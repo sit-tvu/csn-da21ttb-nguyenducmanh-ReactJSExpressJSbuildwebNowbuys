@@ -1,0 +1,431 @@
+.container {
+    width: var(--primary-width-app);
+    margin: 128px auto 0 auto;
+    font-family: var(--primary-font);
+}
+
+/*  */
+.body_overview {
+    padding: 95px 0;
+    /* height: 647px; */
+    
+    .overview_heading {
+        display: flex;
+        display: grid;
+        /* grid-template-rows: repeat(5, 1fr); */
+        grid-template-columns: repeat(30, 1fr);
+        
+        .heading_left {
+            grid-column: 1 / 21;
+            
+            .first-word {
+                font-size: 45px;
+                font-weight: bold;
+            }
+
+            .second-word {
+                font-size: 38px;
+                font-weight: 600;
+                color: var(--sub-color-word);
+            }
+
+            .third-word {
+                margin-top: 10px;
+                font-size: 15px;
+                font-weight: 300;
+                color: var(--sub-color-word);
+                letter-spacing: 2px;
+            }
+        }
+        
+        .heading_right {
+            grid-column: 24 / 31;
+            
+            .heading_right-item {
+                margin-top: 20px;
+                display: flex;
+        
+                &:nth-child(1) {
+                    margin-top: 15px;
+                }
+        
+                .item_frame {
+                    width: 30px;
+                    margin-left: 5px;
+                    display: flex;
+                    align-items: center;
+        
+                    img {
+                        width: 100%;
+                    }
+                }
+                
+                .item_content {
+                    margin-left: 5px;
+                    
+                    .item_content__title {
+                        font-size: 13px;
+                        font-weight: 600;
+                        line-height: 10px;
+                    }
+                    
+                    .item_content__sub-title {
+                        font-size: 10px;
+                        line-height: 10px;
+                        color: var(--color-url);
+                    }
+                }
+            }
+        }
+    }
+    
+    .overview_portfolio {
+        width: var(--primary-width-app);
+        margin-top: 150px;
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        
+        .portfolio_item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        
+            &:hover img {
+                transform: scale(1.1);
+            }
+        
+            &:hover .portfolio_item__name {
+                color: black;
+                transform: scale(1.1);
+            }
+            
+            .portfolio_item__frame  {
+                width: 55%;
+        
+                img {
+                    display: block;
+                    width: 100%;
+                    transition: all 0.2s;
+                }
+            }
+            
+            .portfolio_item__name {
+                margin-top: 10px;
+                font-size: 11px;
+                font-weight: 600;
+                color: rgb(207, 207, 207);
+                transition: all 0.2s;
+            }
+        }
+    }
+}
+
+  
+
+    /*  */
+.body_notable-envent {
+    width: var(--primary-width-app);
+    height: 544px;
+
+    img {
+        display: block;
+        width: 100%;
+        object-fit: contain;
+    }
+}  
+
+    /*  */
+.body_phone,
+.body_laptop {
+    width: var(--primary-width-app);
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.phone_title,
+.laptop_title {
+    width: 500px;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    color: var(--sub-color-word);
+    background-color: #f1f1f1;
+}
+
+.phone_contain,
+.laptop_contain {
+    width: var(--primary-width-app) !important;
+    height: 400px !important;
+    margin-top: 40px;
+    position: relative;
+
+    .button-next,
+    .button-prev {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        box-shadow: 0px 0px 8px 0px #ccc;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateX(50%) translateY(-50%);
+        background-color: #fff;
+        z-index: 10;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+    } 
+    
+    .button-next {
+        left: 0;
+        transform: translateX(-50%) translateY(-50%);
+    }
+}
+
+.phone_contain:hover >.button-scroll-next,
+.phone_contain:hover >.button-scroll-prev,
+.laptop_contain:hover >.button-scroll-next,
+.laptop_contain:hover >.button-scroll-prev {
+    opacity: 1;
+}
+
+.phone_horizontal-scrolling,
+.laptop_horizontal-scrolling {
+    width: 100%;
+    padding: 7px 5px; // Chống che box-shadow của card products trong scroll
+    background-color: transparent;
+}
+
+    /*  */
+.body_intro-smart-watch {
+    width: var(--primary-width-app);
+    height: 660px;
+    display: flex;
+    align-items: center;
+    
+    .intro-smart-watch__left {
+        flex: 6;
+        padding: 0 34px 0 60px;
+        
+        .left_name {
+            margin-bottom: 24px;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--sub-color-word);
+            text-align: center;
+        }
+        
+        .left_content-intro {
+            font-size: 32px;
+            font-weight: 600;
+            text-align: center;
+        
+            &:last-child {
+                margin-bottom: 8px;
+            }
+        } 
+    
+        .left_link {
+            margin-bottom: 48px;
+            text-align: center;
+            
+            a {
+                color: var(--color-url);
+                font-size: 13px;
+        
+                &:first-child {
+                    margin-right: 5px;
+                    font-size: 10px;
+                }
+        
+                &:hover {
+                    font-weight: 500;
+                }
+            }
+        }  
+        
+        .left_slogan {
+            color: #bcb8b8;
+            font-size: 17px;
+            text-align: center;
+        }
+    }
+    
+    
+    
+    
+    .intro-smart-watch__right {
+        flex: 7;
+        
+        .right_img-frame {
+            padding-right: 68px;
+        
+            img {
+                display: block;
+                width: 100%;
+                object-fit: contain;
+            }
+        }
+    }
+}
+
+    /*  */
+.body_smart-watch {
+    width: var(--primary-width-app);
+    height: 660px;
+    padding-top: 130px;
+    background-color: #F6F6F6;
+    display: flex;
+    flex-direction: column;
+    
+    .smart-watch_contain {
+        margin: 0px 150px 0px 150px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+        .contain_item {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            
+            .contain_item__frame {
+                max-height: 150px !important;
+                display: flex;
+                justify-content: center;
+            
+                img {
+                    object-fit: contain;
+                    transition: all 0.5s;
+            
+                    &:hover {
+                        transform: scale(1.2);
+                    }
+                }
+            } 
+            .contain_item__status {
+                margin: 22px auto auto auto;
+                font-size: 13px;
+                font-weight: 600;
+            }
+            
+            .contain_item__name {
+                margin: 16px auto auto auto;
+                font-size: 17px;
+                font-weight: 600;
+            }
+            
+            .contain_item__price {
+                margin: 4px auto auto auto;
+                color: var(--sub-color-word);
+                font-size: 13px;
+                font-weight: 600;
+            }
+            
+            .contain_item__btn-buy {
+                width: 62px;
+                height: 22px;
+                margin: 28px auto auto auto;
+                border-radius: 10px;
+                background-color: var(--color-url);
+                font-size: 8px;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+            }
+            
+            .contain_item__link {
+                margin: 14px auto auto auto;
+                font-size: 12px;
+                color: var(--color-url);
+            }
+        }
+    }
+
+
+}
+ 
+    /* */
+.smart-watch_link-bar {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .link-area {
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+        font-weight: 400;
+        color: rgb(211, 211, 211);
+        position: relative;
+    
+        &:hover span {
+            &:nth-child(2) {
+                right: -30%;
+                opacity: 1;
+            }
+        }
+    
+        &:hover span {
+            transition: all 0.5s;
+            color: var(--sub-color-word);
+        }
+    
+        span {
+            &:nth-child(2) {
+                position: absolute;
+                top: 50%;
+                right: -10%;
+                transform: translateY(-50%);
+                opacity: 0;
+                transition: all 0.5s;
+            }
+        }
+    }
+}
+
+    /*  */
+.body_intro-order {
+    width: var(--primary-width-app);
+    margin-top: 130px;
+    position: relative;
+
+    img {
+        display: block;
+        width: 100%;
+        object-fit: cover !important;
+    }
+    
+    .intro-order_slide-ship {
+        width: 100%;
+        height: 206px;
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        top: 58%;
+        
+        .intro-order_slide-ship__img-frame {
+            overflow: hidden;
+    
+            img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+    } 
+} 

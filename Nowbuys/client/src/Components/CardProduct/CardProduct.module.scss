@@ -1,0 +1,109 @@
+
+
+.cart-product {
+    width: 270px;
+    height: 386px;
+    border-radius: 10px;
+    filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
+    background-color: #fff; 
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 7px;
+
+    user-select: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+    
+    
+    .cart-product_name {
+        font-weight: 600;
+        font-size: 16px;
+        color: #202020;
+    }
+    
+    .cart-product_picture-frame {
+        width: 100% !important;
+        height: 190px !important;
+        margin-top: 18px;
+        display: flex;
+        justify-content: center;
+
+        img {
+            display: block;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .cart-product_desc {
+        font-size: 11.5px;
+        font-weight: 400;
+        color: #626262;
+        text-align: justify;
+
+        display: block;
+        display: -webkit-box;
+        line-height: 1.2;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .cart-product_price-bar {
+        width: 100%;
+        color: #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 25px;
+
+        .price-no-discount,
+        .price-discounted {
+            font-size: 15px;
+            font-weight: 400;
+        }
+    
+        .price-no-discount {
+            color: var(--sub-color-word);
+            text-decoration: line-through;
+        }
+    
+        .price-discounted {
+            font-weight: 600;
+            color: #ef4444;
+        }
+        
+    } 
+    
+    .foot-bar {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+        .star {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            gap: 3px;
+            color: #fe8c23;
+            
+            span {
+                font-size: 22px;
+            }
+        }
+
+        .sold {
+            flex: 1; 
+            text-align: right;
+            font-size: 13px;
+        }
+    }
+} 
+

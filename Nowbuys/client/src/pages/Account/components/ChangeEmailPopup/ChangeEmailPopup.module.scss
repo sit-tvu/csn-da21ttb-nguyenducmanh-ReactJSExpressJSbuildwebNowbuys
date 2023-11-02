@@ -1,0 +1,30 @@
+.popup {
+    position: fixed;
+    inset: 0 0 0 0;  
+    background-color: #00000041;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+
+    .container {
+        width: 500px;
+        min-height: 325px;
+        max-height: 600px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px 2px rgba(59, 59, 59, 0.27450);
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    
+        .loading-popup-container {
+            width: 100%;
+            min-height: 325px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+} 

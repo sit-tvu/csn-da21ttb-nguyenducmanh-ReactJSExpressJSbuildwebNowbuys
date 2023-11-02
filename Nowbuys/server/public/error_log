@@ -1,0 +1,161 @@
+[06-Apr-2023 00:53:23 Asia/Ho_Chi_Minh] PHP Notice:  Undefined index: avatar in /home/manhducj/public_html/nowbuys/uploadImage.php on line 6
+[06-Apr-2023 00:53:23 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 8
+[06-Apr-2023 00:53:23 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 9
+[06-Apr-2023 00:53:23 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 10
+[06-Apr-2023 00:53:23 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 11
+[06-Apr-2023 00:53:23 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 12
+[06-Apr-2023 00:53:23 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 15
+[06-Apr-2023 00:53:54 Asia/Ho_Chi_Minh] PHP Notice:  Undefined index: avatar in /home/manhducj/public_html/nowbuys/uploadImage.php on line 6
+[06-Apr-2023 00:53:54 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 8
+[06-Apr-2023 00:53:54 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 9
+[06-Apr-2023 00:53:54 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 10
+[06-Apr-2023 00:53:54 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 11
+[06-Apr-2023 00:53:54 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 12
+[06-Apr-2023 00:53:54 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 15
+[06-Apr-2023 00:56:01 Asia/Ho_Chi_Minh] PHP Notice:  Undefined index: avatar in /home/manhducj/public_html/nowbuys/uploadImage.php on line 20
+[06-Apr-2023 00:56:01 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 22
+[06-Apr-2023 00:56:01 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 23
+[06-Apr-2023 00:56:01 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 24
+[06-Apr-2023 00:56:01 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 25
+[06-Apr-2023 00:56:01 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 26
+[06-Apr-2023 00:56:01 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 29
+[06-Apr-2023 00:58:51 Asia/Ho_Chi_Minh] PHP Notice:  Undefined index: avatar in /home/manhducj/public_html/nowbuys/uploadImage.php on line 19
+[06-Apr-2023 00:58:51 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 21
+[06-Apr-2023 00:58:51 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 22
+[06-Apr-2023 00:58:51 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 23
+[06-Apr-2023 00:58:51 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 24
+[06-Apr-2023 00:58:51 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 25
+[06-Apr-2023 00:58:51 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 01:00:11 Asia/Ho_Chi_Minh] PHP Notice:  Undefined index: avatar in /home/manhducj/public_html/nowbuys/uploadImage.php on line 19
+[06-Apr-2023 01:00:11 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 21
+[06-Apr-2023 01:00:11 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 22
+[06-Apr-2023 01:00:11 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 23
+[06-Apr-2023 01:00:11 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 24
+[06-Apr-2023 01:00:11 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 25
+[06-Apr-2023 01:00:11 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 01:00:30 Asia/Ho_Chi_Minh] PHP Notice:  Undefined index: avatar in /home/manhducj/public_html/nowbuys/uploadImage.php on line 19
+[06-Apr-2023 01:00:30 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 21
+[06-Apr-2023 01:00:30 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 22
+[06-Apr-2023 01:00:30 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 23
+[06-Apr-2023 01:00:30 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 24
+[06-Apr-2023 01:00:30 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 25
+[06-Apr-2023 01:00:30 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 01:01:44 Asia/Ho_Chi_Minh] PHP Notice:  Undefined index: avatar in /home/manhducj/public_html/nowbuys/uploadImage.php on line 19
+[06-Apr-2023 01:01:44 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 19
+[06-Apr-2023 01:01:44 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 21
+[06-Apr-2023 01:01:44 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 22
+[06-Apr-2023 01:01:44 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 23
+[06-Apr-2023 01:01:44 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 24
+[06-Apr-2023 01:01:44 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 25
+[06-Apr-2023 01:01:44 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 01:03:06 Asia/Ho_Chi_Minh] PHP Notice:  Undefined index: avatar in /home/manhducj/public_html/nowbuys/uploadImage.php on line 19
+[06-Apr-2023 01:03:06 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 19
+[06-Apr-2023 01:03:06 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 21
+[06-Apr-2023 01:03:06 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 22
+[06-Apr-2023 01:03:06 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 23
+[06-Apr-2023 01:03:06 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 24
+[06-Apr-2023 01:03:06 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 25
+[06-Apr-2023 01:03:06 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 01:03:43 Asia/Ho_Chi_Minh] PHP Warning:  Illegal string offset 'name' in /home/manhducj/public_html/nowbuys/uploadImage.php on line 21
+[06-Apr-2023 01:03:43 Asia/Ho_Chi_Minh] PHP Warning:  Illegal string offset 'type' in /home/manhducj/public_html/nowbuys/uploadImage.php on line 22
+[06-Apr-2023 01:03:43 Asia/Ho_Chi_Minh] PHP Warning:  Illegal string offset 'tmp_name' in /home/manhducj/public_html/nowbuys/uploadImage.php on line 23
+[06-Apr-2023 01:03:43 Asia/Ho_Chi_Minh] PHP Warning:  Illegal string offset 'error' in /home/manhducj/public_html/nowbuys/uploadImage.php on line 24
+[06-Apr-2023 01:03:43 Asia/Ho_Chi_Minh] PHP Warning:  Illegal string offset 'size' in /home/manhducj/public_html/nowbuys/uploadImage.php on line 25
+[06-Apr-2023 01:03:43 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 01:04:44 Asia/Ho_Chi_Minh] PHP Notice:  Undefined index: avatar in /home/manhducj/public_html/nowbuys/uploadImage.php on line 19
+[06-Apr-2023 01:04:44 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 19
+[06-Apr-2023 01:04:44 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 21
+[06-Apr-2023 01:04:44 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 22
+[06-Apr-2023 01:04:44 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 23
+[06-Apr-2023 01:04:44 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 24
+[06-Apr-2023 01:04:44 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 25
+[06-Apr-2023 01:04:44 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 01:06:50 Asia/Ho_Chi_Minh] PHP Notice:  Undefined index: avatar in /home/manhducj/public_html/nowbuys/uploadImage.php on line 19
+[06-Apr-2023 01:06:50 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 19
+[06-Apr-2023 01:06:50 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 21
+[06-Apr-2023 01:06:50 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 22
+[06-Apr-2023 01:06:50 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 23
+[06-Apr-2023 01:06:50 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 24
+[06-Apr-2023 01:06:50 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 25
+[06-Apr-2023 01:06:50 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 01:07:35 Asia/Ho_Chi_Minh] PHP Warning:  Illegal string offset 'name' in /home/manhducj/public_html/nowbuys/uploadImage.php on line 21
+[06-Apr-2023 01:07:35 Asia/Ho_Chi_Minh] PHP Warning:  Illegal string offset 'type' in /home/manhducj/public_html/nowbuys/uploadImage.php on line 22
+[06-Apr-2023 01:07:35 Asia/Ho_Chi_Minh] PHP Warning:  Illegal string offset 'tmp_name' in /home/manhducj/public_html/nowbuys/uploadImage.php on line 23
+[06-Apr-2023 01:07:35 Asia/Ho_Chi_Minh] PHP Warning:  Illegal string offset 'error' in /home/manhducj/public_html/nowbuys/uploadImage.php on line 24
+[06-Apr-2023 01:07:35 Asia/Ho_Chi_Minh] PHP Warning:  Illegal string offset 'size' in /home/manhducj/public_html/nowbuys/uploadImage.php on line 25
+[06-Apr-2023 01:07:35 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 09:21:24 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 29
+[06-Apr-2023 09:30:25 Asia/Ho_Chi_Minh] PHP Parse error:  syntax error, unexpected '}', expecting ';' or ',' in /home/manhducj/public_html/nowbuys/uploadImage.php on line 37
+[06-Apr-2023 09:32:08 Asia/Ho_Chi_Minh] PHP Parse error:  syntax error, unexpected '}', expecting ';' or ',' in /home/manhducj/public_html/nowbuys/uploadImage.php on line 37
+[06-Apr-2023 09:32:48 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 29
+[06-Apr-2023 09:40:03 Asia/Ho_Chi_Minh] PHP Parse error:  syntax error, unexpected '/', expecting ')' in /home/manhducj/public_html/nowbuys/uploadImage.php on line 33
+[06-Apr-2023 09:40:50 Asia/Ho_Chi_Minh] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home/manhducj/public_html/nowbuys/uploadImage.php on line 35
+[06-Apr-2023 09:42:53 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 30
+[06-Apr-2023 09:55:03 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 09:55:04 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught Error: Object of class stdClass could not be converted to string in /home/manhducj/public_html/nowbuys/uploadImage.php:38
+Stack trace:
+#0 {main}
+  thrown in /home/manhducj/public_html/nowbuys/uploadImage.php on line 38
+[06-Apr-2023 09:57:17 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 10:09:55 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 10:20:52 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 10:20:52 Asia/Ho_Chi_Minh] PHP Notice:  Array to string conversion in /home/manhducj/public_html/nowbuys/uploadImage.php on line 41
+[06-Apr-2023 10:21:34 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 10:23:00 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 10:23:19 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 10:23:35 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 11:18:57 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 11:19:36 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 11:20:36 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 11:23:08 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 11:23:59 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 11:24:47 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 11:25:04 Asia/Ho_Chi_Minh] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/manhducj/public_html/nowbuys/uploadImage.php on line 28
+[06-Apr-2023 15:01:32 Asia/Ho_Chi_Minh] PHP Warning:  getimagesize(nowbuys_user_35.png): failed to open stream: No such file or directory in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 7
+[06-Apr-2023 15:01:32 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type bool in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 8
+[06-Apr-2023 15:01:32 Asia/Ho_Chi_Minh] PHP Warning:  imagesx() expects parameter 1 to be resource, null given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 42
+[06-Apr-2023 15:01:32 Asia/Ho_Chi_Minh] PHP Warning:  imagesy() expects parameter 1 to be resource, null given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 46
+[06-Apr-2023 15:01:32 Asia/Ho_Chi_Minh] PHP Warning:  imagecopyresampled() expects parameter 2 to be resource, null given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 69
+[06-Apr-2023 15:02:53 Asia/Ho_Chi_Minh] PHP Warning:  getimagesize(nowbuys_user_35.png): failed to open stream: No such file or directory in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 7
+[06-Apr-2023 15:02:53 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type bool in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 8
+[06-Apr-2023 15:02:53 Asia/Ho_Chi_Minh] PHP Warning:  imagesx() expects parameter 1 to be resource, null given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 42
+[06-Apr-2023 15:02:53 Asia/Ho_Chi_Minh] PHP Warning:  imagesy() expects parameter 1 to be resource, null given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 46
+[06-Apr-2023 15:02:53 Asia/Ho_Chi_Minh] PHP Warning:  imagecopyresampled() expects parameter 2 to be resource, null given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 69
+[06-Apr-2023 15:04:47 Asia/Ho_Chi_Minh] PHP Warning:  getimagesize() expects parameter 1 to be string, array given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 7
+[06-Apr-2023 15:04:47 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 8
+[06-Apr-2023 15:04:47 Asia/Ho_Chi_Minh] PHP Warning:  imagesx() expects parameter 1 to be resource, null given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 42
+[06-Apr-2023 15:04:47 Asia/Ho_Chi_Minh] PHP Warning:  imagesy() expects parameter 1 to be resource, null given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 46
+[06-Apr-2023 15:04:47 Asia/Ho_Chi_Minh] PHP Warning:  imagecopyresampled() expects parameter 2 to be resource, null given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 69
+[06-Apr-2023 15:05:57 Asia/Ho_Chi_Minh] PHP Notice:  Undefined index: uploaded_image in /home/manhducj/public_html/nowbuys/uploadImage.php on line 31
+[06-Apr-2023 15:05:57 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 31
+[06-Apr-2023 15:05:57 Asia/Ho_Chi_Minh] PHP Warning:  getimagesize(): Filename cannot be empty in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 7
+[06-Apr-2023 15:05:57 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type bool in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 8
+[06-Apr-2023 15:05:57 Asia/Ho_Chi_Minh] PHP Warning:  imagesx() expects parameter 1 to be resource, null given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 42
+[06-Apr-2023 15:05:57 Asia/Ho_Chi_Minh] PHP Warning:  Division by zero in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 56
+[06-Apr-2023 15:05:57 Asia/Ho_Chi_Minh] PHP Warning:  imagesy() expects parameter 1 to be resource, null given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 46
+[06-Apr-2023 15:05:57 Asia/Ho_Chi_Minh] PHP Warning:  imagecreatetruecolor() expects parameter 2 to be int, float given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 68
+[06-Apr-2023 15:05:57 Asia/Ho_Chi_Minh] PHP Warning:  imagesx() expects parameter 1 to be resource, null given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 42
+[06-Apr-2023 15:05:57 Asia/Ho_Chi_Minh] PHP Warning:  imagesy() expects parameter 1 to be resource, null given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 46
+[06-Apr-2023 15:05:57 Asia/Ho_Chi_Minh] PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, null given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 69
+[06-Apr-2023 15:05:57 Asia/Ho_Chi_Minh] PHP Warning:  imagejpeg() expects parameter 1 to be resource, null given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 33
+[06-Apr-2023 15:07:16 Asia/Ho_Chi_Minh] PHP Notice:  Undefined index: uploaded_image in /home/manhducj/public_html/nowbuys/uploadImage.php on line 31
+[06-Apr-2023 15:07:16 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type null in /home/manhducj/public_html/nowbuys/uploadImage.php on line 31
+[06-Apr-2023 15:07:16 Asia/Ho_Chi_Minh] PHP Warning:  getimagesize(): Filename cannot be empty in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 7
+[06-Apr-2023 15:07:16 Asia/Ho_Chi_Minh] PHP Notice:  Trying to access array offset on value of type bool in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 8
+[06-Apr-2023 15:07:16 Asia/Ho_Chi_Minh] PHP Warning:  imagesx() expects parameter 1 to be resource, null given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 42
+[06-Apr-2023 15:07:16 Asia/Ho_Chi_Minh] PHP Warning:  Division by zero in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 56
+[06-Apr-2023 15:07:16 Asia/Ho_Chi_Minh] PHP Warning:  imagesy() expects parameter 1 to be resource, null given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 46
+[06-Apr-2023 15:07:16 Asia/Ho_Chi_Minh] PHP Warning:  imagecreatetruecolor() expects parameter 2 to be int, float given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 68
+[06-Apr-2023 15:07:16 Asia/Ho_Chi_Minh] PHP Warning:  imagesx() expects parameter 1 to be resource, null given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 42
+[06-Apr-2023 15:07:16 Asia/Ho_Chi_Minh] PHP Warning:  imagesy() expects parameter 1 to be resource, null given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 46
+[06-Apr-2023 15:07:16 Asia/Ho_Chi_Minh] PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, null given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 69
+[06-Apr-2023 15:07:16 Asia/Ho_Chi_Minh] PHP Warning:  imagejpeg() expects parameter 1 to be resource, null given in /home/manhducj/public_html/nowbuys/SimpleImage.php on line 20
+[06-Apr-2023 21:45:03 Asia/Ho_Chi_Minh] PHP Warning:  imagecreatefromjpeg(): gd-jpeg: JPEG library reports unrecoverable error: Not a JPEG file: starts with 0x89 0x50 in /home/manhducj/public_html/nowbuys/uploadImage.php on line 38
+[06-Apr-2023 21:45:03 Asia/Ho_Chi_Minh] PHP Warning:  imagecreatefromjpeg(): '/tmp/phpfzKPDb' is not a valid JPEG file in /home/manhducj/public_html/nowbuys/uploadImage.php on line 38
+[06-Apr-2023 21:45:03 Asia/Ho_Chi_Minh] PHP Warning:  imagecopyresampled() expects parameter 2 to be resource, bool given in /home/manhducj/public_html/nowbuys/uploadImage.php on line 44
+[06-Apr-2023 21:45:03 Asia/Ho_Chi_Minh] PHP Warning:  imagedestroy() expects parameter 1 to be resource, bool given in /home/manhducj/public_html/nowbuys/uploadImage.php on line 46
+[22-Apr-2023 00:28:18 Asia/Ho_Chi_Minh] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/manhducj/public_html/nowbuys/uploadImage.php on line 79
+[22-Apr-2023 00:28:25 Asia/Ho_Chi_Minh] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/manhducj/public_html/nowbuys/uploadImage.php on line 79
+[22-Apr-2023 00:30:07 Asia/Ho_Chi_Minh] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/manhducj/public_html/nowbuys/uploadImage.php on line 79
+[22-Apr-2023 00:30:18 Asia/Ho_Chi_Minh] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/manhducj/public_html/nowbuys/uploadImage.php on line 79
+[22-Apr-2023 00:30:54 Asia/Ho_Chi_Minh] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/manhducj/public_html/nowbuys/uploadImage.php on line 79
