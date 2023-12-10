@@ -3,14 +3,13 @@ import { useNavigate, useParams  } from "react-router-dom"
 
 import { format } from 'date-fns'
 
-import myAxios from '../../api/axios.js'
+import {axiosAppJson} from '../../configs/axios.js'
 
-import Loading from '../../Components/Loading/Loading.jsx'
-import CircleLoading from '../../Components/Loading/CircleLoading.jsx'
+import Loading from '../../Components/loading/Loading.jsx'
+import CircleLoading from '../../Components/loading/CircleLoading.jsx'
 import { cartContext } from '../../context/CartContext.js'
 
-import CryptoJS from 'crypto-js';
-import { CryptoJS_secret_key } from '../../secret_key/index.js';
+import CryptoJS from 'crypto-js'; 
 
 import classNames from "classnames/bind"
 import style from "./Details.module.scss"
@@ -100,15 +99,14 @@ function Details() {
 
         abortControllerRefThisProduct.current = new AbortController()
         try {
-            myAxios.post(`/products/details/get?slug=${slug_this_product}`,
+            axiosAppJson.post(`/products/details/get?slug=${slug_this_product}`,
                 {}, // when using method post you must pass newAbortController as 3rd argument -- method get, pass newAbortController as 2rd argument
                 {
                     signal: abortControllerRefThisProduct.current.signal, // Set the signal property in the request config
                 }
             )   
                 .then(API => {
-                    console.log(API)
-                    setThisProduct(API.data)
+                    setThisProduct(API.data);
                 })
                 .catch(err => console.log(err))
         } catch (error) {
@@ -122,21 +120,20 @@ function Details() {
 
     const handleGetStatisticalComments = () => {
         if (abortControllerRefThisStatisticalComments.current) {
-            abortControllerRefThisStatisticalComments.current.abort()
+            abortControllerRefThisStatisticalComments.current.abort();
         }
 
         abortControllerRefThisStatisticalComments.current = new AbortController()
         try {
-            myAxios.post(`/comment/statistical-comments/get?product_id=${thisProduct.id}`,
+            axiosAppJson.post(`/comment/statistical-comments/get?product_id=${thisProduct.id}`,
                 {}, // when using method post you must pass newAbortController as 3rd argument -- method get, pass newAbortController as 2rd argument
                 {
                     signal: abortControllerRefThisStatisticalComments.current.signal, // Set the signal property in the request config
                 }
             )   
                 .then(API => {
-                    console.log(API.data)
                     if (!API.data.error) { 
-                        setThisCommentStatistical(API.data.statistical)
+                        setThisCommentStatistical(API.data.statistical);
                     }
                 })
                 .catch(err => console.log(err))
@@ -156,7 +153,7 @@ function Details() {
 
         abortControllerRefThisComments.current = new AbortController()
         try {
-            myAxios.post(`/comment/comments/get?product_id=${thisProduct.id}&cmt_per_load=${(thisCommentsPaginate &&thisCommentsPaginate.cmt_per_paginate)?thisCommentsPaginate.cmt_per_paginate:1}&paginate=${(thisCommentsPaginate &&thisCommentsPaginate.next_paginate)?thisCommentsPaginate.next_paginate:1}`,
+            axiosAppJson.post(`/comment/comments/get?product_id=${thisProduct.id}&cmt_per_load=${(thisCommentsPaginate &&thisCommentsPaginate.cmt_per_paginate)?thisCommentsPaginate.cmt_per_paginate:1}&paginate=${(thisCommentsPaginate &&thisCommentsPaginate.next_paginate)?thisCommentsPaginate.next_paginate:1}`,
                 {}, // when using method post you must pass newAbortController as 3rd argument -- method get, pass newAbortController as 2rd argument
                 {
                     signal: abortControllerRefThisComments.current.signal, // Set the signal property in the request config
@@ -183,7 +180,7 @@ function Details() {
 
     const handleAddCart = (id_product) => {
         setIsLoadingHandleCart(true)
-        myAxios.post(`/cart/add-product-to-cart?product_id=${id_product}`)
+        axiosAppJson.post(`/cart/add-product-to-cart?product_id=${id_product}`)
             .then(API => {
                 if (!API.data.error) {
                     handleAddProductInCart(API.data.product_data)
@@ -204,7 +201,7 @@ function Details() {
     
     const handleRemoveCart = (id_product) => {
         setIsLoadingHandleCart(true)
-        myAxios.post(`/cart/remove-one-product-from-cart?product_id=${id_product}`)
+        axiosAppJson.post(`/cart/remove-one-product-from-cart?product_id=${id_product}`)
             .then(API => {
                 if (!API.data.error) {
                     handleRemoveOneProductFromCartGlobal(id_product)

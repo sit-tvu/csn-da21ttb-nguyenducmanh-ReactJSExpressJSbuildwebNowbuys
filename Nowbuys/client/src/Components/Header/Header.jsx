@@ -3,9 +3,11 @@ import { useState, useEffect, Fragment, useContext, useCallback, useRef } from '
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import noCartIMG from '../../assets/no-cart.png'
-import { userContext, cartContext, catelogyContext } from '../../context/index.js'
+import { userContext, cartContext, catelogyContext } from '../../context/index.js';
 
-import myaxios from '../../api/axios'
+import { AuthenAPI, ProductAPI } from '../../apis/index.js';
+
+import {axiosAppJson} from '../../configs/axios.js'
 import debounce from 'lodash.debounce'
 
 import classNames from 'classnames/bind'
@@ -55,15 +57,19 @@ function Header() {
     }, [catelogyListGlobal])
     
     useEffect(() => {
-        if (showDropdownSearch)
-            myaxios.post('/products/product-most-searched/get', {
-                product_per_page: 4
-            })
-                .then(API => {
-                    setMostSearched(API.data)
-                })
-                .catch((err) => console.log(err))
-    }, [showDropdownSearch])
+        if (showDropdownSearch) {
+            getMostProductSearched();
+        } 
+    }, [showDropdownSearch]);
+
+    const getMostProductSearched = async () => {
+        let res = await ProductAPI.mostSearch(4);
+        if (!res.is_err) {
+            setMostSearched(res.data);
+        } else {
+            console.log(res);
+        }
+    }
 
     // For effect of header
     useEffect(() => {
@@ -94,7 +100,7 @@ function Header() {
         } else { 
             setShowDropdownSearch(true)
         }
-    } 
+    }
     
     useEffect(() => { 
         document.addEventListener('click', handleClickOutside)
@@ -102,26 +108,24 @@ function Header() {
     }, [])
 
 
-    const handleSignout = () => {
-        myaxios.post('/auth/log-out')
-            .then(API => {
-                window.location.reload()
-            })
-            .catch(err => console.log(err))
+    const handleSignout = async () => {
+        await AuthenAPI.signout();
+        window.location.reload(); 
     }
 
-    const debounceSearch = useCallback(debounce((next_value) => {
+    const debounceSearch = useCallback(debounce(async (next_value) => {
         if (next_value.trim() !== '') {
-            myaxios.post('/products/search', {
-                search: next_value,
-                product_per_page: 7
-            })
-                .then(API => {
-                    setResultSearch(API.data);
-                })
-                .catch(err => console.log(err));
+
+            let res = await ProductAPI.search(next_value, 7);
+
+            if (!res.is_err) {
+                setResultSearch(res.data); 
+            } else {
+                console.log(res);
+            }
+
         } else {
-            setResultSearch([])
+            setResultSearch([]);
         }
     }, 300), []) 
 
@@ -131,7 +135,7 @@ function Header() {
                 <Link to="/">
                     <div className={cn('header-main_logo')}>
                         <div className={cn('header-main_logo__frame')}>
-                            <img src={`${process.env.REACT_APP_DOMAIN_SERVER}/static/global/logo-app/logo.png`} alt="Logo"></img>
+                            <img src={`${process.env.REACT_APP_DOMAIN_SERVER_STATIC}/static/global/logo-app/logo.png`} alt="Logo"></img>
                         </div>
                         <div className={cn('header-main_logo__name')}>
                             <p className={cn('header-main_logo__name-main')}>Nowbuys</p>
@@ -313,7 +317,7 @@ function Header() {
                                     && 
                                     <img src={userInfoGlobal.avatar_url + `?refreshAntiCache=${Math.random()}`} alt="Avatar"></img> // ?refreshAntiCache=${Math.random()} using to browser always update image anti cache
                                     ||
-                                    <img src={`${process.env.REACT_APP_DOMAIN_SERVER}/static/User/no-avatar.jpg`} alt="Avatar"></img>
+                                    <img src={`${process.env.REACT_APP_DOMAIN_SERVER_STATIC}/static/User/no-avatar.jpg`} alt="Avatar"></img>
                                 }
                             </Link>
                             <div className={cn('user_options')}>

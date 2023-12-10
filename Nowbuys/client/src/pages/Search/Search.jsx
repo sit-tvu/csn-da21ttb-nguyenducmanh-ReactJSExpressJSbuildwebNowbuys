@@ -2,11 +2,11 @@
 import { useContext, useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
-import myaxios from '../../api/axios'
+import {axiosAppJson} from '../../configs/axios'
 
 
-import CardProduct from '../../Components/CardProduct/CardProduct'
-import Loading from '../../Components/Loading/Loading'
+import CardProduct from '../../Components/card/Card'
+import Loading from '../../Components/loading/Loading'
 
 import notFoundIMG from '../../assets/not-found.png'
 
@@ -27,7 +27,7 @@ function Search() {
     const [resultSearch, setResultSearch] = useState([])
     
     useEffect(() => {
-        myaxios.post('/products/search', {
+        axiosAppJson.post('/products/search', {
             search: search,
             product_per_page: 10
         })

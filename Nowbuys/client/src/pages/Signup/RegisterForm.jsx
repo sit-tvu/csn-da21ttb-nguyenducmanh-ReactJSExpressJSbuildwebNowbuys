@@ -3,12 +3,12 @@ import { Fragment, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import { auth } from '../../api/firebase.js'
+import { auth } from '../../configs/firebase.js'
 
-import myaxios from '../../api/axios.js'
+import {axiosAppJson} from '../../configs/axios.js'
 
-import Loading from '../../Components/Loading/Loading.jsx'
-import CircleLoading from '../../Components/Loading/CircleLoading.jsx'
+import Loading from '../../Components/loading/Loading.jsx'
+import CircleLoading from '../../Components/loading/CircleLoading.jsx'
 
 import logoIMG from '../../assets/signup/logo.png';
 import facebook from '../../assets/signup/Facebook.png';
@@ -132,7 +132,7 @@ function RegisterForm(props) {
     const handleSignupWithGoogle = async () => { 
         const provider = new GoogleAuthProvider();
         const res = await signInWithPopup(auth, provider);
-        await myaxios.post('/auth/log-in/google', {
+        await axiosAppJson.post('/auth/log-in/google', {
             data: res.user
         })
             .then(API => {

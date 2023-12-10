@@ -4,16 +4,17 @@ import { Link, useNavigate, useLocation } from 'react-router-dom'
 
 import { cartContext } from '../../context/CartContext.js';
 
-import myAxios from '../../api/axios.js'
+import {axiosAppJson} from '../../configs/axios.js'
 
 import CryptoJS from 'crypto-js'; 
 
-import Loading from '../../Components/Loading/Loading.jsx'
+import Loading from '../../Components/loading/Loading.jsx'
 
 import noCartIMG from '../../assets/no-cart.png' 
 
 import classNames from 'classnames/bind'
 import style from './Cart.module.scss'
+import { CartAPI } from '../../apis/index.js';
 const cn = classNames.bind(style)
 
 const init_billing = {
@@ -32,7 +33,7 @@ function Cart() {
 
     const history = useNavigate()
 
-    const { handleRemoveOneProductFromCartGlobal, handleRemoveManyProductsFromCartGlobal } = useContext(cartContext)
+    const { handleRemoveProductsFromCartGlobal } = useContext(cartContext)
 
     const [productInCartList, setProductInCartList] = useState(null) 
 
@@ -51,7 +52,7 @@ function Cart() {
     }, []) 
 
     useEffect (() =>{
-        handleBilling()  
+        handleBilling();
     }, [idListSelectProduct, voucherInf.price, productInCartList]) 
 
     const handleBilling = async () => {
@@ -87,92 +88,63 @@ function Cart() {
         })
     }
 
-    const handleGetProductInCartList = () => {
-        myAxios.post(`/cart/products-in-cart/get/all`)
-            .then(API => { 
-                if (!API.data.error) { 
-                    setProductInCartList(API.data.product_in_cart)
-                } else {
-                    if (!API.data.is_login) { 
-                        history(`/signin?prev-page-url=/cart`)
-                    }
+    const handleGetProductInCartList = async () => {
+        let res = await CartAPI.getAllProducts();
+        if (!res.is_err) {
+            if (!res.data.error) { 
+                setProductInCartList(res.data.product_in_cart)
+            } else {
+                if (!res.data.is_login) { 
+                    history(`/signin?prev-page-url=/cart`)
                 }
-            })
-            .catch(err => console.log(err))
-    }
-        
-    const handleRemoveManyProductsFromCart = () => { 
-        setIdListProductDeleting(prev => [...prev, ...idListSelectProduct])
-        myAxios.post('/cart/remove-many-products-from-cart', {
-            product_id_list: JSON.stringify(idListSelectProduct)
-        })
-            .then(API => {
-                if (!API.data.error) {
+            }
+        } else {
+            console.log(res);
+        } 
+    } 
 
-                    handleRemoveManyProductsFromCartGlobal(idListSelectProduct)
+    const handleRemoveProductFromCart = async (list_product_id) => { 
+        setIdListProductDeleting(prev => [...prev, ...list_product_id]);
 
-                    setIdListProductDeleted(prev => [...prev, ...idListSelectProduct])
-                    
-                    setTimeout(() => {
-                        setIdListProductDeleting(prev => prev.filter(item => !idListSelectProduct.includes(item)))
-                        setIdListSelectProduct([])
-                        setProductInCartList(prev => prev.filter(product => !idListSelectProduct.includes(product.id)))
-                    }, 700) // 0.5s with animation deleted in css
-                }
+        let res = await CartAPI.deleteProducts(list_product_id);
 
-            })
-            .catch(err => console.log(err))
-    }
+        if (!res.is_err) {
+            if (!res.data.error) {
 
-    const handleRemoveOneProductFromCart = (id_product) => { 
-        setIdListProductDeleting(prev => [...prev, id_product])
-        myAxios.post(`/cart/remove-one-product-from-cart?product_id=${id_product}`)
-            .then(API => { 
-                if (!API.data.error) { 
+                handleRemoveProductsFromCartGlobal(list_product_id)
 
-                    handleRemoveOneProductFromCartGlobal(id_product)
-
-                    setIdListProductDeleted(prev => [...prev, id_product])
-                    
-                    setTimeout(() => {
-                        setProductInCartList(prev => prev.filter(product => product.id !== id_product))
-                        setIdListSelectProduct(prev => prev.filter(item => item !== id_product))
-                        setIdListProductDeleting(prev => prev.filter(item => item !== id_product))
-                    }, 700) // 0.5s with animation deleted in css
-
-                } else {
-                    if (API.data.code_status === 0) 
-                        history('/signin')
-                } 
-            })
-            .catch(err => console.log(err))
+                setIdListProductDeleted(prev => [...prev, ...list_product_id])
+                
+                setTimeout(() => {
+                    setIdListProductDeleting(prev => prev.filter(item => !list_product_id.includes(item)));
+                    setIdListSelectProduct([]);
+                    setProductInCartList(prev => prev.filter(product => !list_product_id.includes(product.id)));
+                }, 700) // 0.5s with animation deleted in css
+            }
+        } else {
+            console.log(res);
+        }
     }
 
-    // const handleCheckVoucherCode = () => {
-    //     setTimeout(() => {
-    //         setVoucherInf(prev => {return{...prev, price: 150000}})
-    //     }, 1000)
-    // }
-
-    const handleUpdateProductNumber = (id_product, number_product) => { 
+    const handleUpdateProductNumber = async (id_product, number_product) => { 
         setIdListProductUpdateNumber(prev => [...prev, id_product])
-        myAxios.post('/cart/change-product-number', {
-            product_id: id_product,
-            number: number_product
-        })
-            .then(API => {
-                if (!API.data.error) {
-                    setProductInCartList(prev => {
-                        return prev.map(product => {
-                            if (product.id === id_product)
-                                return {...product, number: number_product}
-                            return product
-                        })
+
+        let res = await CartAPI.changeNumberProducts(id_product, number_product);
+
+        if (!res.is_err) {
+            if (!res.data.error) {
+                setProductInCartList(prev => {
+                    return prev.map(product => {
+                        if (product.id === id_product)
+                            return {...product, number: number_product}
+                        return product
                     })
-                }
-                setIdListProductUpdateNumber(prev => prev.filter(item => item !== id_product))
-            })
-            .catch(err => console.log(err))
+                })
+            }
+            setIdListProductUpdateNumber(prev => prev.filter(item => item !== id_product))
+        } else {
+            console.log(res);
+        } 
     } 
 
     const handleGotoCheckout = () => {
@@ -228,7 +200,7 @@ function Cart() {
                                     <p>Chọn tất cả</p>
                                 </div>
                                 <div className={cn('button-delete', {'not-allow': idListSelectProduct.length === 0})}
-                                    onClick = {() => {handleRemoveManyProductsFromCart()}}
+                                    onClick = {() => {handleRemoveProductFromCart(idListSelectProduct)}}
                                 >
                                     <span className="material-icons-outlined">delete_outline</span>
                                     <p>Xoá</p>
@@ -366,7 +338,7 @@ function Cart() {
                                             </div>
                                             <div className={cn('item-button-delete')}>
                                                 <span className="material-icons"
-                                                    onClick = {() => handleRemoveOneProductFromCart(product.id)}
+                                                    onClick = {() => handleRemoveProductFromCart([product.id])}
                                                 >delete_outline</span>
                                             </div>
                                         </div>

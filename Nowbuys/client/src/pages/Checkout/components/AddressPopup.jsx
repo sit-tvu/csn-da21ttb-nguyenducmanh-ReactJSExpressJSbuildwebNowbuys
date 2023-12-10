@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react'
 
-import myAxios from '../../../api/axios.js'
+import {axiosAppJson} from '../../../configs/axios.js'
 import { Loading } from '../../../Components/index.js'
 
 import AddAddress from './AddAddress/AddAddress.jsx'
@@ -25,7 +25,7 @@ export default function AddressPopup({props}) {
 
     const handleGetAddressOfUser = () => {
         setListAddressOfUser(null)
-        myAxios.post('/address/for-user/get')
+        axiosAppJson.post('/address/for-user/get')
             .then(API => {
                 setListAddressOfUser(API.data.address_list)
             })

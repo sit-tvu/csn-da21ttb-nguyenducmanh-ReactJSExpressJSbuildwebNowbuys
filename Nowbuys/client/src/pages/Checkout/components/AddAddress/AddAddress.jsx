@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect, Fragment } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import myAxios from '../../../../api/axios.js'
+import {axiosAppJson} from '../../../../configs/axios.js'
 
 import classNames from 'classnames/bind'
 import style from './AddAddress.module.scss'
@@ -82,14 +82,14 @@ export default function AddAddress({props}) {
         if (isShowdropdownAddress) { 
             switch (unitAddress) {
                 case 1: 
-                    myAxios.post('/address/provinces/all') 
+                    axiosAppJson.post('/address/provinces/all') 
                         .then(API => {
                             setListAddressForUnit(API.data.data)
                         })
                         .catch(err => console.log(err))
                     break;
                 case 2: 
-                    myAxios.post('/address/districts/dependent', {
+                    axiosAppJson.post('/address/districts/dependent', {
                         province_id: dataAddressSelected.province.id
                     }) 
                         .then(API => {
@@ -98,7 +98,7 @@ export default function AddAddress({props}) {
                         .catch(err => console.log(err))
                     break;
                 case 3: 
-                    myAxios.post('/address/wards/dependent', {
+                    axiosAppJson.post('/address/wards/dependent', {
                         district_id: dataAddressSelected.district.id
                     }) 
                         .then(API => {
@@ -130,7 +130,7 @@ export default function AddAddress({props}) {
 
         abortControllerRef.current = new AbortController(); // Update the AbortController
         try {
-            myAxios.post(`/address/search/get`,
+            axiosAppJson.post(`/address/search/get`,
                 {search: searchAddress}, // when using method post you must pass newAbortController as 3rd argument -- method get, pass newAbortController as 2rd argument
                 {
                     signal: abortControllerRef.current.signal, // Set the signal property in the request config
@@ -209,7 +209,7 @@ export default function AddAddress({props}) {
     }
 
     const handleSubmitSaveNewAddress = () => { 
-        myAxios.post('/address/add', {
+        axiosAppJson.post('/address/add', {
             consignee_name: dataInput.consignee_name,
             consignee_phone: dataInput.consignee_phone,
             desc_address: dataInput.desc_address,
@@ -233,7 +233,7 @@ export default function AddAddress({props}) {
     }
 
     const handleSubmitUpdateAddress = () => { 
-        myAxios.post('/address/update', {
+        axiosAppJson.post('/address/update', {
             id_address_update: props.addressNeedUpdate.id,
             consignee_name: dataInput.consignee_name,
             consignee_phone: dataInput.consignee_phone,
@@ -283,7 +283,8 @@ export default function AddAddress({props}) {
                             &&
                             <label className={cn('label-input')}>Họ và tên</label>
                         }
-                        <input className={cn('input')} value={dataInput.consignee_name} type='text' placeholder='Họ và tên'
+                        <input className={cn('input')} type='text' placeholder='Họ và tên' name='fullname'
+                            value={dataInput.consignee_name}
                             onChange={(e) => {setDataInput(prev => {return {...prev, consignee_name: e.target.value}})}}
                         ></input>
                         {
@@ -302,7 +303,7 @@ export default function AddAddress({props}) {
                             &&
                             <label className={cn('label-input')}>Số điện thoại</label>
                         }
-                        <input className={cn('input')} type='text'
+                        <input className={cn('input')} type='text' name='phone'
                             // value={`${dataInput.consignee_phone.slice(0, 4)}${dataInput.consignee_phone.length>4?'.':''}${dataInput.consignee_phone.slice(4, 7)}${dataInput.consignee_phone.length>7?'.':''}${dataInput.consignee_phone.slice(7)}`}
                             value={dataInput.consignee_phone}
                             placeholder='Số điện thoại'
@@ -329,7 +330,7 @@ export default function AddAddress({props}) {
                                 &&
                                 <label className={cn('label-input')}>Tỉnh/Thành phố, Quận/Huyện, Phường/Xã</label>
                             }
-                            <input className={cn('input')} type='text' placeholder={dataAddressSelected.province.name?dataNameAddress:'Tỉnh/Thành phố, Quận/Huyện, Phường/Xã'}
+                            <input className={cn('input')} type='text' name='desc' placeholder={dataAddressSelected.province.name?dataNameAddress:'Tỉnh/Thành phố, Quận/Huyện, Phường/Xã'}
                                 value={isShowdropdownAddress?searchAddress:dataNameAddress}
                                 onChange={(e) => {
                                     setSearchAddress(e.target.value)

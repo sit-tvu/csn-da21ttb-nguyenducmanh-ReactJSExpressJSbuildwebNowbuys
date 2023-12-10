@@ -3,11 +3,11 @@
 import { useState, useContext, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-import myAxios from '../../api/axios.js'
+import {axiosAppJson} from '../../configs/axios.js'
 import { userContext, cartContext, catelogyContext } from '../../context/index.js';
 
-import Loading from '../../Components/Loading/Loading'; 
-import CardProduct from '../../Components/CardProduct/CardProduct';
+import Loading from '../../Components/loading/Loading.jsx'; 
+import CardProduct from '../../Components/card/Card.jsx';
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -45,7 +45,7 @@ function AllProducts() {
     }, [userInfoGlobal])
 
     const handleGetProductsInHomePage = (catelogy_id) => {
-        myAxios.post(`/products/show-in-home-page?catelogy=${catelogy_id}`)
+        axiosAppJson.post(`/products/show-in-home-page?catelogy=${catelogy_id}`)
             .then(API => { 
                 switch (catelogy_id) {
                     case 1: setPhonesInHomePage(API.data); break;

@@ -5,10 +5,10 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 import classNames from "classnames/bind"
-import style from './CardProduct.module.scss'
+import style from './Card.module.scss'
 const cn = classNames.bind(style)
 
-export default function CardProduct({product}) {  
+export default function Card({product}) {  
 
     const navigate = useNavigate() 
 

@@ -1,7 +1,8 @@
 
-export { default as CardProduct } from './CardProduct/CardProduct.jsx'
-export { default as Footer } from './Footer/Footer.jsx'
-export { default as Header } from './Header/Header.jsx'
-export { default as ScrollToTop } from './ScrollToTop/ScrollToTop.jsx' 
-export { default as Loading } from './Loading/Loading.jsx'
-export { default as CircleLoading } from './Loading/CircleLoading.jsx' 
+export { default as Card } from './card/Card.jsx';
+export { default as Footer } from './footer/Footer.jsx';
+export { default as Header } from './header/Header.jsx';
+export { default as ScrollToTop } from './scroll-to-top/ScrollToTop.jsx';
+export { default as Loading } from './loading/Loading.jsx';
+export { default as CircleLoading } from './loading/CircleLoading.jsx';
+export { default as GlobalStyles } from './global-styles/GlobalStyles.js';

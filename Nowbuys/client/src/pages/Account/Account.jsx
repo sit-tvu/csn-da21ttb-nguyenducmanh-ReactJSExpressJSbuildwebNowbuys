@@ -5,7 +5,7 @@ import { Loading } from '../../Components/index.js'
 
 import ChangeEmailPopup from './components/ChangeEmailPopup/ChangeEmailPopup.jsx'
 
-import myaxios from '../../api/axios.js'
+import {axiosAppJson} from '../../configs/axios.js'
 
 import style from './Account.module.scss'
 import classNames from 'classnames/bind'
@@ -84,7 +84,7 @@ export default function Account() {
     }, [newUserInf, newUserBirthday])
 
     const handleGetUserInf = () => {
-        myaxios.post(`/auth/profile/get`)        
+        axiosAppJson.post(`/auth/profile/get`)        
             .then(API => { 
                 if (API.data.is_login) {
                     setUserInf(API.data.user_info)
@@ -128,7 +128,7 @@ export default function Account() {
         const formData = new FormData() 
         formData.append('image', selectedFile) 
 
-        myaxios.postForm('/upload/test/update', formData, {
+        axiosAppJson.post('/upload/avatar/update', formData, {
             headers: {
                 "Content-type": "multipart/form-data",
             }
@@ -139,6 +139,7 @@ export default function Account() {
                 handleGetUserInf()
                 setIsSaving(false) 
                 setHasBeenChange(false)
+                setDisableAction(false)
             })
             .catch(e => console.log(e))  
     }
@@ -176,9 +177,6 @@ export default function Account() {
         }
     } 
 
-    console.log(isShowChangeEmailPopup);
-
-
     return (
         <div className={cn('container')} > 
             {
@@ -193,6 +191,7 @@ export default function Account() {
                                 <div className={cn('cluster-col')}> 
                                     <div className={cn('text-change')}><h4>Tên đăng nhập:</h4><p>{userInf.username}</p></div>
                                     <div className={cn('text-change')}><h4>Email:</h4><p>{userInf.email}</p><span>Thay đổi</span></div>
+                                    {/* <div className={cn('text-change')}><h4>Email:</h4><p>{userInf.email}</p><span onClick={() => setShowChangeEmailPopup(true)}>Thay đổi</span></div> */}
                                     <div className={cn('text-change')}><h4>Số điện thoại:</h4><p>{userInf.phone}</p><span>Thay đổi</span></div>
                                 </div>
 
@@ -432,12 +431,8 @@ export default function Account() {
                             className={cn('button-save', {'not-allow-click': !hasBeenChange})} 
                             onClick={disableAction ? () => {} : () => {
                                 if (hasBeenChange)
-                                    handleCheckData()
-                                
-                                console.log('click')
+                                    handleCheckData() 
                                 setDisableAction(true)
-                                setShowChangeEmailPopup(true)
-
                             }}
                         >Lưu</button>
                     </div>

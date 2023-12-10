@@ -1,13 +1,12 @@
 
 import { useState } from 'react'; 
-
-import myaxios from '../../../../../api/axios';
+ 
 
 import style from './AddEmail.module.scss'
 import classNames from 'classnames/bind'
 const cn = classNames.bind(style)
 
-export default function ChangeEmailPopup({props}) {
+export default function AddEmail({props}) {
 
     const [newEmail, setNewEmail] = useState('');
 
@@ -21,7 +20,7 @@ export default function ChangeEmailPopup({props}) {
         if (newEmail.trim() !== '') {
             if (newEmail.match(validRegex) && newEmail.match(/\.[a-zA-Z0-9-]+$/)) { 
                 setNewEmailStatusError(1);
-                handleAddNewEmailToAwait(); 
+                handleSaveNewEmailToLocal(); 
             } else { 
                 setNewEmailStatusError(2);
             }
@@ -31,16 +30,9 @@ export default function ChangeEmailPopup({props}) {
 
     } 
 
-    const handleAddNewEmailToAwait = () => {
-        myaxios.post('/profile/info-user-await-change/add/email', {
-            new_email: newEmail
-        })
-            .then(API => {
-                props.setNewEmail(newEmail.trim());
-            })
-            .catch(err => {
-                console.log(err);
-            })
+    const handleSaveNewEmailToLocal = () => {
+        console.log('handle save new email to local');
+        props.setNewEmail(newEmail.trim());
     }
 
 
@@ -54,31 +46,31 @@ export default function ChangeEmailPopup({props}) {
                 <span>Địa chỉ email trước:</span>
                 <span>{props.userInf.email}</span>
                 <div className={cn('verification')}>
-                <div className={cn('input-area', {'input-warning': newEmailStatusError !== 1})}>
-                            {
-                                newEmail != ''
-                                &&
-                                <label className={cn('field-name-input')}>Địa chỉ email mới</label>
-                            }
-                            <input
-                                name="username"
-                                autoComplete="on" 
-                                type='text'
-                                placeholder="Địa chỉ email mới"
-                                value={newEmail}
-                                onChange={(e) => setNewEmail(() => { return e.target.value })}
-                                onKeyDown={(e) => (e.key === 'Enter')?handleCheckNewEmail():null}
-                            />
-                            {
-                                newEmailStatusError === 0
-                                &&
-                                <span className={cn('text-error-input')}>*Bạn chưa nhập địa chỉ email mới!</span>
-                                ||
-                                newEmailStatusError === 2
-                                &&
-                                <span className={cn('text-error-input')}>*Địa chỉ email mới không hợp lệ</span> 
-                            } 
-                        </div>
+                    <div className={cn('input-area', {'input-warning': newEmailStatusError !== 1})}>
+                        {
+                            newEmail != ''
+                            &&
+                            <label className={cn('field-name-input')}>Địa chỉ email mới</label>
+                        }
+                        <input
+                            name="username"
+                            autoComplete="on" 
+                            type='text'
+                            placeholder="Địa chỉ email mới"
+                            value={newEmail}
+                            onChange={(e) => setNewEmail(() => { return e.target.value })}
+                            onKeyDown={(e) => (e.key === 'Enter')?handleCheckNewEmail():null}
+                        />
+                        {
+                            newEmailStatusError === 0
+                            &&
+                            <span className={cn('text-error-input')}>*Bạn chưa nhập địa chỉ email mới!</span>
+                            ||
+                            newEmailStatusError === 2
+                            &&
+                            <span className={cn('text-error-input')}>*Địa chỉ email mới không hợp lệ</span> 
+                        } 
+                    </div>
                 </div> 
             </div>
 

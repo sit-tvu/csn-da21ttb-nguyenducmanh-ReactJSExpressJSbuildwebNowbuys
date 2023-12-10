@@ -2,8 +2,8 @@
 import { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom"
 
-import Loading from '../../Components/Loading/Loading.jsx'
-import CircleLoading from '../../Components/Loading/CircleLoading.jsx'
+import Loading from '../../Components/loading/Loading.jsx'
+import CircleLoading from '../../Components/loading/CircleLoading.jsx'
 
 import expire from '../../assets/expire.png' 
 

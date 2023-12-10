@@ -3,7 +3,7 @@ import { Fragment, useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom' 
 import CryptoJS from 'crypto-js';
 
-import myaxios from '../../api/axios.js';
+import {axiosAppJson} from '../../configs/axios.js';
 
 import AddressPopup from './components/AddressPopup.jsx';
 
@@ -64,7 +64,7 @@ function Checkout() {
 
     const refreshCheckoutData = async () => { 
         setIsCheckingouting(true)
-        myaxios.post('/checkout/check', {
+        axiosAppJson.post('/checkout/check', {
             product_id_list: JSON.stringify(payloadCheckoutDecypt.product_id_list),
             voucher_code: voucherInput,
             to_address_id: idOfAddressSelected, // 0: get address default of user

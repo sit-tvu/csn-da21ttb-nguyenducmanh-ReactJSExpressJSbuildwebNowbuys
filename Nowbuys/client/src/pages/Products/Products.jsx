@@ -4,13 +4,13 @@ import { useLocation } from 'react-router-dom'
 
 import CryptoJS from 'crypto-js';
 
-import myAxios from '../../api/axios.js';
+import {axiosAppJson} from '../../configs/axios.js';
 
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-import CardProduct from '../../Components/CardProduct/CardProduct.jsx'; 
-import Loading from '../../Components/Loading/Loading.jsx';
+import CardProduct from '../../Components/card/Card.jsx'; 
+import Loading from '../../Components/loading/Loading.jsx';
 import { userContext, cartContext } from '../../context/index.js';
 
 import classNames from 'classnames/bind';
@@ -68,7 +68,7 @@ function PhoneProducts() {
     }, [catelogy_id_params, userInfoGlobal])  
 
     const handleGetBrandList = () => {
-        myAxios.get(`/general/brand/get?catelogy=${catelogy_id_params}`)
+        axiosAppJson.get(`/general/brand/get?catelogy=${catelogy_id_params}`)
             .then(API => {
                 setBrandsList(API.data)
             })
@@ -94,7 +94,7 @@ function PhoneProducts() {
 
         abortControllerRef.current = new AbortController(); // Update the AbortController
         try {
-            myAxios.post(`/products/product-catelogy/get?catelogy=${select.catelogy_id}&brand=${select.brand_id}&sort_by=${select.sort_by}`,
+            axiosAppJson.post(`/products/product-catelogy/get?catelogy=${select.catelogy_id}&brand=${select.brand_id}&sort_by=${select.sort_by}`,
                 {}, // when using method post you must pass newAbortController as 3rd argument -- method get, pass newAbortController as 2rd argument
                 {
                     signal: abortControllerRef.current.signal, // Set the signal property in the request config
@@ -114,8 +114,6 @@ function PhoneProducts() {
             }
         }
     }  
-
-    console.log(productList);
 
     return (
         <div className={cn('container')}>

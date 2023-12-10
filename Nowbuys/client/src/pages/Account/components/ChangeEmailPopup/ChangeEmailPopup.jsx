@@ -5,15 +5,16 @@ import VerifyOTPEmail from './VerifyOTPEmail/VerifyOTPEmail.jsx';
 import AddEmail from './AddEmail/AddEmail.jsx';
 
 import { Loading } from '../../../../Components/index.js';
+import {axiosAppJson} from '../../../../configs/axios.js';
 
 import style from './ChangeEmailPopup.module.scss';
 import classNames from 'classnames/bind';
-import myaxios from '../../../../api/axios.js';
 const cn = classNames.bind(style);
 
 export default function ChangeEmailPopup({props}) { 
 
     const {userInf, setShowChangeEmailPopup} = props; 
+    
     let email = userInf.email;
 
     const [hasChangedEmail, setHasChangedEmail] = useState(false)
@@ -34,7 +35,7 @@ export default function ChangeEmailPopup({props}) {
 
     const handleSubmitChangeEmail = () => {
         setSubmitingChangeEmail(true);
-        myaxios.post('profile/change/email')
+        axiosAppJson.post('profile/change/email')
             .then(API => {
                 console.log(API.data);
                 setHasChangedEmail(true)

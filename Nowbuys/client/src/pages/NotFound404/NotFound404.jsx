@@ -1,13 +1,11 @@
-import { Fragment } from "react"
-import { Link } from "react-router-dom"
+import { Fragment } from "react";
 
 import './NotFound404.scss'
 
 function NotFound404() {
     window.scrollTo(0, 0);
-    document.title = "Nowbuys - Not Found"
-
-
+    document.title = "Nowbuys - Not Found";
+    
     return (
         <Fragment>
             <div className="content">

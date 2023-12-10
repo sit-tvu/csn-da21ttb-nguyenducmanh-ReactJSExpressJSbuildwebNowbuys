@@ -1,7 +1,7 @@
 
 import { createContext, useEffect, useState } from "react"
 
-import myaxios from "../api/axios.js"
+import {axiosAppJson} from "../configs/axios.js"
 
 export const catelogyContext = createContext() 
 
@@ -14,7 +14,7 @@ export default function Catelogy({children}) {
     }, [])
     
     const handleGetCatelogyList = () => {
-        myaxios.get(`/general/catelogy/get`)
+        axiosAppJson.get(`/general/catelogy/get`)
             .then(API => { 
                 setCatelogyListGlobal(API.data)
             })

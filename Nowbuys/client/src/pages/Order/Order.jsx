@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import noCartIMG from '../../assets/no-cart.png'
 
-import Loading from '../../Components/Loading/Loading.jsx' 
+import Loading from '../../Components/loading/Loading.jsx' 
 
 import classNames from 'classnames/bind'
 import style from './Order.module.scss'

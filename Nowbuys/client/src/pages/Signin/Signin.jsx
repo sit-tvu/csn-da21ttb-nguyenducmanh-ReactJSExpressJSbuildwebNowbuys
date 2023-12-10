@@ -5,9 +5,9 @@ import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { CircleLoading, Loading } from '../../Components/index.js'
 
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import { auth } from '../../api/firebase.js'
+import { auth } from '../../configs/firebase.js'
 
-import myaxios from '../../api/axios.js';
+import { AuthenAPI } from '../../apis/index.js';
 
 import logoIMG from '../../assets/signin/logo.png';
 import facebook from '../../assets/signin/Facebook.png';
@@ -41,7 +41,7 @@ function Signin() {
     // 4: username or password incorrect
 
     useEffect(() => { 
-        handleCheckIsSignin()
+        handleCheckIsSignin();
         // connectMicrosoft()
     }, []) 
 
@@ -54,17 +54,14 @@ function Signin() {
             handleSignin()
     }, [checkSigninForm])
 
-    const handleCheckIsSignin = () => {
-        setIsLoadingFullScreen(true)
-        myaxios.post(`/auth/profile/get`) 
-            .then(API => {
-                if (API.data.is_login) { // is sign in
-                    window.location.href = '/'
-                } else {
-                    setIsLoadingFullScreen(false)
-                }
-            })
-            .catch(error => console.log(error)) 
+    const handleCheckIsSignin = async () => {
+        setIsLoadingFullScreen(true);
+        const res = await AuthenAPI.getProfile();
+        if (res.data.is_login) { // is sign in
+            window.location.href = '/'
+        } else {
+            setIsLoadingFullScreen(false);
+        } 
     }
 
     const handleCheckInputSigninForm = () => {  
@@ -106,43 +103,34 @@ function Signin() {
         setCheckSigninForm(resultCheckInput)
     }
 
-    const handleSignin = () => { 
-        setIsLoadingBtnSignIn(true)
-        console.log(signinForm);
-        myaxios.post(`/auth/log-in/local`, { 
-            username: signinForm.username,
-            password: signinForm.password
-        }) 
-            .then(API => { 
-                setIsLoadingBtnSignIn(false)
-                if (API.data.is_login) { 
-                    if ( prev_page_url === null)
-                        window.location.href = '/'
-                    else 
-                        window.location.href = prev_page_url + `?prev-page-url=${exit_goto_page_url}`
-                } else {
-                    setCheckSigninForm(API.data.err_code_login)
-                }
-            })
-            .catch(error => console.log(error)) 
+    const handleSignin = async () => { 
+        setIsLoadingBtnSignIn(true);
+
+        const res = await AuthenAPI.signinLocal(signinForm.username, signinForm.password);
+
+        setIsLoadingBtnSignIn(false);
+        if (res.data.is_login) { 
+            if ( prev_page_url === null)
+                window.location.href = '/';
+            else 
+                window.location.href = prev_page_url + `?prev-page-url=${exit_goto_page_url}`;
+        } else {
+            setCheckSigninForm(res.data.err_code_login);
+        } 
     }
 
     const handleSigninWithGoogle = async () => { 
         const provider = new GoogleAuthProvider();
-        const res = await signInWithPopup(auth, provider);
-        console.log(res.user);
-        await myaxios.post('/auth/log-in/google', {
-            data: res.user
-        })
-            .then(API => {
-                if (API.data.is_login) { 
-                    if ( prev_page_url === null)
-                        window.location.href = '/'
-                    else 
-                        window.location.href = prev_page_url + `?prev-page-url=${exit_goto_page_url}`
-                } 
-            })
-            .catch(err => console.error(err))
+        const resGoogle = await signInWithPopup(auth, provider);  
+
+        const res = await AuthenAPI.signinGoogle(resGoogle.user);
+
+        if (res.data.is_login) { 
+            if ( prev_page_url === null)
+                window.location.href = '/'
+            else 
+                window.location.href = prev_page_url + `?prev-page-url=${exit_goto_page_url}`
+        } 
     }
 
     return (

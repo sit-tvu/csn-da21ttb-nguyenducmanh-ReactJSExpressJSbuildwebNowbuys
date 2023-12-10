@@ -1,7 +1,7 @@
 
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { Loading } from '../../../../../Components/index.js';
-import myaxios from '../../../../../api/axios.js';
+import {axiosAppJson} from '../../../../../configs/axios.js';
 import { useNavigate } from 'react-router-dom';
 
 import style from './VerifyOTPEmail.module.scss'
@@ -30,7 +30,7 @@ export default function VerifyOTPEmail({props}) {
 
     const sendOTPVerifyEmail = () => {
         setHasSentEmail(false)
-        myaxios.post('/verification/send/otp-verify-email')
+        axiosAppJson.post('/verification/send/otp-verify-email')
             .then(API => {
                 if (API.data.success) {
                     setHasSentEmail(true)
@@ -118,7 +118,7 @@ export default function VerifyOTPEmail({props}) {
 
     const handleSubmit = () => {
         setIsCheckingOTP(true)
-        myaxios.post('verification/receive/otp-verify-email', {
+        axiosAppJson.post('verification/receive/otp-verify-email', {
             otp: OTP.join(''),
             type: 'verify-email'
         })

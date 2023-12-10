@@ -1,7 +1,7 @@
 
 import { createContext, useEffect, useState } from "react"
 
-import myaxios from "../api/axios.js"
+import {axiosAppJson} from "../configs/axios.js"
 
 export const userContext = createContext() 
 
@@ -14,7 +14,7 @@ export default function User({children}) {
     }, [])
     
     const handleCheckIsSignin = () => {
-        myaxios.post(`/auth/profile/get`)        
+        axiosAppJson.post(`/auth/profile/get`)        
             .then(API => { 
                 if (API.data.is_login) {
                     setUserInfoGlobal(API.data.user_info)
