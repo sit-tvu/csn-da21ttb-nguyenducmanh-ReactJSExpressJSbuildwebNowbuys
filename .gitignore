@@ -1,16 +1,22 @@
 # dependencies
-/Nowbuys/client/node_modules
-/Nowbuys/server/node_modules
+/Nowbuys/client/client/node_modules
+/Nowbuys/client/server/node_modules
+
+/Nowbuys/admin/client/node_modules
+/Nowbuys/admin/server/node_modules
+
 .pnp
 .pnp
 .pnp.js
 .pnp.js
 
 # testing
-/Nowbuys/client/coverage
+/Nowbuys/client/client/coverage
+/Nowbuys/admin/client/coverage
 
 # production
-/Nowbuys/client/build
+/Nowbuys/client/client/build
+/Nowbuys/admin/client/build
 
 # misc
 .DS_Store
