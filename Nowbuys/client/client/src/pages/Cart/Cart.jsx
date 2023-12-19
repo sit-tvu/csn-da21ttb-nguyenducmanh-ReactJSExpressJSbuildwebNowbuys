@@ -2,9 +2,8 @@
 import { useState, useEffect, useContext, Fragment } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 
-import { cartContext } from '../../context/CartContext.js';
-
-import {axiosAppJson} from '../../configs/axios.js'
+import { cartContext } from '../../context/CartContext.js'; 
+import { CartAPI } from '../../apis/index.js';
 
 import CryptoJS from 'crypto-js'; 
 
@@ -14,7 +13,6 @@ import noCartIMG from '../../assets/no-cart.png'
 
 import classNames from 'classnames/bind'
 import style from './Cart.module.scss'
-import { CartAPI } from '../../apis/index.js';
 const cn = classNames.bind(style)
 
 const init_billing = {
@@ -151,7 +149,7 @@ function Cart() {
         let payload_checkout = {
             product_id_list: idListSelectProduct,
             voucher_code: voucherInf.code
-        }
+        } 
 
         const payload_checkout_encrypt = encodeURIComponent(CryptoJS.AES.encrypt(JSON.stringify(payload_checkout), process.env.REACT_APP_CRYPT_PAYLOAD_CHECKOUT).toString())
         history(`/checkout?state=${payload_checkout_encrypt}`)

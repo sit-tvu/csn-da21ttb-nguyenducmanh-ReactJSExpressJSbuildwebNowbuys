@@ -7,7 +7,8 @@ import { userContext, cartContext, catelogyContext } from '../../context/index.j
 
 import { AuthenAPI, ProductAPI } from '../../apis/index.js';
 
-import {axiosAppJson} from '../../configs/axios.js'
+import CryptoJS from 'crypto-js';
+
 import debounce from 'lodash.debounce'
 
 import classNames from 'classnames/bind'
@@ -15,8 +16,6 @@ import style from './Header.module.scss'
 const cn = classNames.bind(style)
 
 function Header() { 
-
-
     const navigate = useNavigate()
     const location = useLocation() 
 
@@ -57,10 +56,23 @@ function Header() {
     }, [catelogyListGlobal])
     
     useEffect(() => {
-        if (showDropdownSearch) {
+        if (showDropdownSearch) { 
+            getHistorySearch();
             getMostProductSearched();
         } 
     }, [showDropdownSearch]);
+
+    const getHistorySearch = async () => {
+        let data_history = [];
+        try {
+            let local_storage_his = localStorage.getItem('history');
+            data_history = await JSON.parse(CryptoJS.AES.decrypt(local_storage_his, process.env.REACT_APP_CRYPT_HISTORY_SEARCH + `${(userInfoGlobal && userInfoGlobal.id)?userInfoGlobal.id:''}`).toString(CryptoJS.enc.Utf8));
+        } catch (e) {
+            console.log(e); 
+        }
+        setHistorySearch(data_history);
+    }
+
 
     const getMostProductSearched = async () => {
         let res = await ProductAPI.mostSearch(4);
@@ -129,6 +141,25 @@ function Header() {
         }
     }, 300), []) 
 
+    const handleGoToSearch = async (search) => {
+        
+        let data_history = null;
+        try {
+            let local_storage_his = localStorage.getItem('history');
+            data_history = await JSON.parse(CryptoJS.AES.decrypt(local_storage_his, process.env.REACT_APP_CRYPT_HISTORY_SEARCH + `${(userInfoGlobal && userInfoGlobal.id)?userInfoGlobal.id:''}`).toString(CryptoJS.enc.Utf8));
+            data_history = [search, ...data_history];
+        } catch (e) {
+            data_history = [search];  
+        }
+
+        localStorage.setItem('history', CryptoJS.AES.encrypt(JSON.stringify(data_history), process.env.REACT_APP_CRYPT_HISTORY_SEARCH + `${(userInfoGlobal && userInfoGlobal.id)?userInfoGlobal.id:''}`).toString());
+
+        navigate('/search/' + search.trim());
+    }
+
+    // CryptoJS.AES.encrypt(JSON.stringify(search), process.env.REACT_APP_CRYPT_HISTORY_SEARCH).toString()
+    // JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('history'), process.env.REACT_APP_CRYPT_HISTORY_SEARCH).toString(CryptoJS.enc.Utf8))
+
     return (
         <header className={cn('header')}>
             <div className={cn('header-main', {'hidden': hiddenHeaderMain})}>
@@ -156,7 +187,7 @@ function Header() {
                             onKeyDown={(e) => {
                                 if (e.key === 'Enter') {
                                     if (search.trim() !== '') {
-                                        navigate('/search/' + search.trim())  
+                                        handleGoToSearch(search);  
                                         setShowDropdownSearch(false)
                                     } else {
                                         setShowDropdownSearch(true)
@@ -164,10 +195,13 @@ function Header() {
                                 }
                             }}
                         ></input> 
+                        <span className="material-icons-round"
+                            onClick={() => setSearch('')}
+                        >highlight_off</span>
                         <button ref={buttonSearchRef} className={cn('search-button')}
                             onClick={() => {
                                 if (search.trim() !== '') {
-                                    navigate('/search/' + search.trim())  
+                                    handleGoToSearch(search);  
                                     setShowDropdownSearch(false)
                                 } else {
                                     setShowDropdownSearch(true)
@@ -202,9 +236,9 @@ function Header() {
                                 }
                             </div>
                             <div className={cn('right')}>
-                                <div className={cn('right_cluster')}>
+                                <div className={cn('right_cluster-top')}>
                                     <h4 className={cn('title')}>Sản phẩm được tìm kiếm nhiều nhất</h4>
-                                    <div className={cn('container', 'height-abs-159')}>
+                                    <div className={cn('container')}>
                                         {
                                             mostSearched.map((product) => {
                                                 return <div className={cn('product__item')} key={product.slug+Math.random()}
@@ -227,15 +261,19 @@ function Header() {
                                         } 
                                     </div>
                                 </div>
-                                <div className={cn('right_cluster')}>
+                                <div className={cn('right_cluster-bottom')}>
                                     <h4 className={cn('title')}>Lịch sử tìm kiếm</h4>
                                     <div className={cn('container')}>
-                                        <div className={cn('item-text')}><span>Laptop</span></div>  
-                                        <div className={cn('item-text')}><span>Laptop</span></div>  
-                                        <div className={cn('item-text')}><span>Laptop</span></div>  
-                                        <div className={cn('item-text')}><span>Laptop</span></div>  
-                                        <div className={cn('item-text')}><span>Laptop</span></div>  
-                                        <div className={cn('item-text')}><span>Laptop</span></div>  
+                                        {
+                                            historySearch.map((his, i) => {
+                                                return <span key={i} 
+                                                    onClick={() => {
+                                                        setSearch(his);
+                                                        handleGoToSearch(his);
+                                                    }} className={cn('item-history')}
+                                                >{his}</span>
+                                            })
+                                        }   
                                     </div>
                                 </div>
                             </div>

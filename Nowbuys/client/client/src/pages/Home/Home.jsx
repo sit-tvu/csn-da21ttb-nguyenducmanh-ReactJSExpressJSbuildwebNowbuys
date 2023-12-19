@@ -56,7 +56,7 @@ function AllProducts() {
     } 
 
     return (
-        <div className={cn('container')}> 
+        <div className={cn('container')}>  
 
             <div className={cn('body_overview')}>
                 <div className={cn('overview_heading')}>
@@ -68,7 +68,7 @@ function AllProducts() {
                     <div className={cn('heading_right')}>
                         <div className={cn('heading_right-item')}>
                             <div className={cn('item_frame')}>
-                                <img src={`${process.env.REACT_APP_DOMAIN_SERVER}/static/global/overview/support.png`} alt=""></img>
+                                <img src={`${process.env.REACT_APP_DOMAIN_SERVER_STATIC}/static/global/overview/support.png`} alt=""></img>
                             </div>
                             <div className={cn('item_content')}>
                                 <p className={cn('item_content__title')}>Cách thức mua hàng</p>
@@ -77,7 +77,7 @@ function AllProducts() {
                         </div>
                         <div className={cn('heading_right-item')}>
                             <div className={cn('item_frame')}>
-                                <img src={`${process.env.REACT_APP_DOMAIN_SERVER}/static/global/logo-app/logo.png`} alt=""></img>
+                                <img src={`${process.env.REACT_APP_DOMAIN_SERVER_STATIC}/static/global/logo-app/logo.png`} alt=""></img>
                             </div>
                             <div className={cn('item_content')}>
                                 <p className={cn('item_content__title')}>Hiểu thêm về chúng tôi</p>
@@ -101,7 +101,7 @@ function AllProducts() {
             </div>
 
             <div className={cn('body_notable-envent')}>
-                <img src={`${process.env.REACT_APP_DOMAIN_SERVER}/static/introduces/notable-envent/notable-events.png`} alt=""></img>
+                <img src={`${process.env.REACT_APP_DOMAIN_SERVER_STATIC}/static/introduces/notable-envent/notable-events.png`} alt=""></img>
             </div>
 
             <div className={cn('body_phone')}>
@@ -233,7 +233,7 @@ function AllProducts() {
                 </div>
                 <div className={cn('intro-smart-watch__right')}>
                     <div className={cn('right_img-frame')}>
-                        <img src={`${process.env.REACT_APP_DOMAIN_SERVER}/static/introduces/smart-watch/intro-smart-watch.png`} alt=""></img>
+                        <img src={`${process.env.REACT_APP_DOMAIN_SERVER_STATIC}/static/introduces/smart-watch/intro-smart-watch.png`} alt=""></img>
                     </div>
                 </div>
             </div>
@@ -276,20 +276,20 @@ function AllProducts() {
             </div>
 
             <div className={cn('body_intro-order')}>
-                <img src={`${process.env.REACT_APP_DOMAIN_SERVER}/static/global/intro-shipper/intro-shipper.png`} alt=""></img>
+                <img src={`${process.env.REACT_APP_DOMAIN_SERVER_STATIC}/static/global/intro-shipper/intro-shipper.png`} alt=""></img>
 
                 <div className={cn('intro-order_slide-ship')}>
                     <div className={cn('intro-order_slide-ship__img-frame')}>
-                        <img src={`${process.env.REACT_APP_DOMAIN_SERVER}/static/global/intro-shipper/shipper-1.png`} alt=""></img>
+                        <img src={`${process.env.REACT_APP_DOMAIN_SERVER_STATIC}/static/global/intro-shipper/shipper-1.png`} alt=""></img>
                     </div>
                     <div className={cn('intro-order_slide-ship__img-frame')}>
-                        <img src={`${process.env.REACT_APP_DOMAIN_SERVER}/static/global/intro-shipper/shipper-2.png`} alt=""></img>
+                        <img src={`${process.env.REACT_APP_DOMAIN_SERVER_STATIC}/static/global/intro-shipper/shipper-2.png`} alt=""></img>
                     </div>
                     <div className={cn('intro-order_slide-ship__img-frame')}>
-                        <img src={`${process.env.REACT_APP_DOMAIN_SERVER}/static/global/intro-shipper/shipper-3.png`} alt=""></img>
+                        <img src={`${process.env.REACT_APP_DOMAIN_SERVER_STATIC}/static/global/intro-shipper/shipper-3.png`} alt=""></img>
                     </div>
                     <div className={cn('intro-order_slide-ship__img-frame')}>
-                        <img src={`${process.env.REACT_APP_DOMAIN_SERVER}/static/global/intro-shipper/shipper-4.png`} alt=""></img>
+                        <img src={`${process.env.REACT_APP_DOMAIN_SERVER_STATIC}/static/global/intro-shipper/shipper-4.png`} alt=""></img>
                     </div>
                 </div>
             </div>

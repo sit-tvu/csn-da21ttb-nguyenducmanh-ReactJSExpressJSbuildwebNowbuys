@@ -19,8 +19,8 @@ export default function AddressPopup({props}) {
     const [isShowPopupAddAddress, setIsShowPopupAddAddress] = useState(false) 
 
     useEffect(() => {
-        if (isShowPopupAddAddress === false)
-            handleGetAddressOfUser()
+        if (isShowPopupAddAddress == false)
+            handleGetAddressOfUser();
     }, [isShowPopupAddAddress])
 
     const handleGetAddressOfUser = () => {
@@ -48,7 +48,7 @@ export default function AddressPopup({props}) {
                 </div>
                 ||
                 (
-                    (isShowPopupAddAddress || listAddressOfUser.length === 0)
+                    isShowPopupAddAddress
                     &&
                     <AddAddress props={{listAddressOfUser, setAddressNeedUpdate, addressNeedUpdate, setIsShowPopupAddAddress}} />
                     ||

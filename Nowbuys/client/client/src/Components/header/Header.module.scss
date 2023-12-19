@@ -107,7 +107,6 @@ header {
     
         .search-button {
             height: 100%;
-            margin-left: 5px;
             padding: 0px 30px;
             border-radius: 5px;
             background-color: #f5f5f7;
@@ -161,7 +160,7 @@ header {
                 background-color: #ccc;
             }
 
-            .right_cluster {
+            .right_cluster-top {
                 display: flex;
                 flex-direction: column;
                 gap: 8px;
@@ -192,7 +191,7 @@ header {
         }
 
         .left .product__item,
-        .right .right_cluster .container .product__item {
+        .right .right_cluster-top .container .product__item {
             padding: 7px;
             border-radius: 3px;
             background-color: #f2f2f2;
@@ -242,6 +241,34 @@ header {
                 p {
                     font-size: 15px;
                     color: rgba(255, 0, 0, 0.864);
+                }
+            }
+        }
+
+        .right_cluster-bottom {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: flex-start;
+            gap: 8px;
+            overflow: hidden;
+
+            .container {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: flex-start;
+                gap: 4px;
+
+                .item-history {
+                    border-radius: 3px;
+                    padding: 5px 10px;
+
+                    &:hover {
+                        cursor: pointer;
+                        background-color: #ededed;
+                    }
                 }
             }
         }

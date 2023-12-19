@@ -224,7 +224,7 @@ function Details() {
         let payload_checkout = {
             product_id_list: [thisProduct.id],
             voucher_code: ''
-        }
+        } 
 
         const payload_checkout_encrypt = encodeURIComponent(CryptoJS.AES.encrypt(JSON.stringify(payload_checkout), process.env.REACT_APP_CRYPT_PAYLOAD_CHECKOUT).toString())
         history(`/checkout?state=${payload_checkout_encrypt}`)
@@ -285,7 +285,7 @@ function Details() {
                                             <span>{thisProduct[`${item.props}`]}</span>
                                         </li>
                                 else
-                                    return ''
+                                    return '';
                             })
                         } 
                     </ul>
@@ -409,7 +409,6 @@ function Details() {
                             }
                         </div>
                         {   
-
                             thisCommentsList.length === 0
                             &&
                             <p className={cn('no-comment')}>Chưa có đánh giá</p>

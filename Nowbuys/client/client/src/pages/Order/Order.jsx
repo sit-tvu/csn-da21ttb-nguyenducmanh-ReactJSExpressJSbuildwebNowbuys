@@ -1,91 +1,196 @@
 
-import { useState, useEffect, useContext } from 'react'
-import { Link, useNavigate } from 'react-router-dom'  
+import { useState, useEffect, useContext } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';  
 
-import noCartIMG from '../../assets/no-cart.png'
+import noCartIMG from '../../assets/no-cart.png';
 
-import Loading from '../../Components/loading/Loading.jsx' 
+import { OrderAPI } from '../../apis/index.js';
 
-import classNames from 'classnames/bind'
-import style from './Order.module.scss'
-const cn = classNames.bind(style)  
+import Loading from '../../Components/loading/Loading.jsx'; 
 
-function Order() { 
+import classNames from 'classnames/bind';
+import style from './Order.module.scss';
+const cn = classNames.bind(style);
 
-    const history = useNavigate()  
+const init_nav = [
+    {
+        id: 'all',
+        title: 'Tất cả',
+        select: true
+    },
+    {
+        id: 'processing',
+        title: 'Chờ xử lý',
+        select: false
+    },
+    {
+        id: 'transport',
+        title: 'Vận chuyển',
+        select: false
+    },
+    {
+        id: 'delivering',
+        title: 'Đang giao',
+        select: false
+    },
+    {
+        id: 'finished',
+        title: 'Hoàn thành',
+        select: false
+    },
+    {
+        id: 'canceled',
+        title: 'Đã huỷ',
+        select: false
+    },
+    {
+        id: 'warranty',
+        title: 'Bảo hành',
+        select: false
+    }
+];
 
-    const [dataOrder, setDataOrder] = useState(null)
+const init_order_data = {
+    all: null,
+    processing: null,
+    transport: null,
+    delivering: null,
+    finished: null,
+    canceled: null,
+    warranty: null
+};
 
-    useEffect (() =>{
-        const abortController = new AbortController()
-    
-        const getOrders = async () => {  
-            try {
-                fetch('http://localhost:4000/order/get', {
-                    method: 'POST',
-                    credentials: "include",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    signal: abortController.signal
-                })
-                    .then(response => response.json())
-                    .then(API => {
-                        console.log(API.dataOrder);
-                        if (API.dataOrder) {
-                            setDataOrder(API.dataOrder)
-                        } else {
-                            if (!API.isSignin) { 
-                                localStorage.setItem('to_signin_from_order_page', true)
-                                window.location.href = '/signin'
-                            }
-                        }
-                    })
-                    .catch(error => console.error(error))
 
-            } catch (err) {
-                console.log(err)
+export default function Order() { 
+
+    const path_app = useLocation();
+
+    const [fixedNavBar, setFixedNavBar] = useState(false);
+    const [navigateList, setNavigateList] = useState(init_nav);
+
+    const [orderData, setOrderData] = useState(init_order_data);
+
+    // For effect of header
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY >= 80 ) {
+                setFixedNavBar(true)
+            } else {
+                setFixedNavBar(false)
             }
-        }
-
-        getOrders()
+        };
+        window.addEventListener('scroll', handleScroll)
 
         return () => {
-            abortController.abort() // Dừng fetch khi component này unmount mà fetch chưa thực hiện xong    
+            window.removeEventListener('scroll', handleScroll)
         }
-    }, []) 
+    }, []);
+
+    useEffect(() => {
+        handleSelectNav();
+    }, [path_app]);
+
+    const handleSelectNav = () => {
+        const queryParams = new URLSearchParams(path_app.search);
+        const type = queryParams.get('type');
+        let path_app_right = false;
+
+        setNavigateList(prev => {
+            let new_prev = prev.map(item => {
+                if (item.id == type)
+                    path_app_right = true;
+
+                return {...item, select: item.id == type}
+            })
+
+            if (!path_app_right)
+                new_prev[0].select = true;
+        
+            return new_prev;
+        })
+    }
+
+    useEffect(() => {
+        handleGetOrderByState(navigateList.find(item => item.select === true).id);
+    }, [navigateList]);
+
+    const handleGetOrderByState = async (state) => {
+
+        console.log('handleGetOrderByState ' + state);
+        
+        if (!orderData[state]) {
+            let res = await OrderAPI.getOrderByState(state);
+
+            if (!res.data.error) {
+                setOrderData(prev => { 
+                    prev[state] = res.data.data;
+                    return prev;
+                });
+            } else {
+                if (res.data.not_sign_in) {
+                    console.log(res);
+                    localStorage.setItem('to_signin_from_order_page', true);
+                    window.location.href = '/signin';
+                } else {
+                    console.log(res.data);
+                }
+            }
+        }
+    }
+
+    console.log(orderData);
+    console.log(orderData[navigateList.find(item => item.select === true).id]);
+
+    let state = navigateList.find(item => item.select === true).id;
 
     return (
-        dataOrder != null
-        && 
-        (
-            dataOrder.length == 0
-            &&
-            <div className={cn('container')}>
-                <div className={cn('no-cart')}>
-                    <div className={cn('no-cart-frame')}>
-                        <img src={noCartIMG} alt="no-cart"></img>
-                    </div>
-                    <h1 className={cn('no-cart-content')}>Bạn chưa có đơn hàng! Hãy mua sắm ngay!!!</h1>
-                </div>
-            </div>
-            || 
-            <div className={cn('container')}>   
+        <div className={cn('container-order')}>
+            <div className={cn('nav-bar', {'fixed': fixedNavBar})}>
                 {
-                    dataOrder.map((order, index) => {
+                    navigateList.map(item => {
+                        return <Link to={'?type='+item.id} key={item.id} className={cn('item', {'select': item.select})}>
+                            <span>{item.title}</span>
+                        </Link>
+                    })
+                }
+            </div>
+            <div className={cn('body')}>
+                {   orderData[state] != null
+                    &&
+                    orderData[state].map((order, index) => { 
                         return (
-                            <div className={cn('order-item')} key={index}>
+                            <div className={cn('order-item')} key={index + Math.random()}>
                                 <div className={cn('order-item_bar')}>
                                     <div className={cn('order-item_bar__left')}>
                                         <p>Đơn hàng số {index + 1}</p>
                                     </div>
                                     <div className={cn('order-item_bar__right')}>
-                                        <div className={cn('order-item_bar__right___follow-delivery')}>
+                                        {/* <div className={cn('order-item_bar__right___follow-delivery')}>
                                             <span className="material-icons-outlined">local_shipping</span>
                                             <p>Đơn hàng đang trên đường giao đến bạn</p>
-                                        </div>
+                                        </div> */}
                                         <div className={cn('order-item_bar__right___status-delivery')}>
-                                            <p>ĐANG VẬN CHUYỂN</p>
+                                            {
+                                                order.state === 'processing'
+                                                &&
+                                                <p>ĐANG XỬ LÝ</p>
+                                                ||
+                                                order.state === 'transport'
+                                                &&
+                                                <p>ĐANG VẬN CHYỂN</p>
+                                                ||
+                                                order.state === 'delivering'
+                                                &&
+                                                <p>ĐANG GIAO HÀNG</p>
+                                                ||
+                                                order.state === 'finished'
+                                                &&
+                                                <p>HOÀN THÀNH</p>
+                                                ||
+                                                order.state === 'canceled'
+                                                &&
+                                                <p>ĐÃ HUỶ</p>
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -94,86 +199,52 @@ function Order() {
                                         order.product_list.map((product, index) => {
                                             return (
                                                 <div className={cn('product-item')} key={index}> 
-                                                    <Link className={cn('item-product')} to={`/details?product_type=${product.productInf.product_type}&product_id_full=${product.product_id}`}>
+                                                    <Link className={cn('item-product')} to={`/product/details/${product.slug}`}>
                                                         <div className={cn('item-product_frame')}>
-                                                            <img src={product.productInf.link_img} alt="Product"></img>
+                                                            <img src={product.thumbnail_url} alt="Product"></img>
                                                         </div>  
                                                         <div className={cn('item-product_inf')}>
-                                                            <h3>{product.productInf.name_display}</h3>
-                                                            <p>{product.productInf.desc_short}</p>
+                                                            <h3>{product.name_display}</h3>
+                                                            <p>{product.desc_short}</p>
                                                         </div>
                                                     </Link>
                                                     <div className={cn('item-price')}>
-                                                        <p>{Intl.NumberFormat('vi-VN', 'currency').format(product.productInf.price - ((product.productInf.price/100)*product.productInf.discount_percentage)) + 'đ'}</p>
-                                                        <span>Giảm {product.productInf.discount_percentage}%</span>
-                                                        <p>{Intl.NumberFormat('vi-VN', 'currency').format(product.productInf.price)+'đ'}</p>
+                                                        <p>{Intl.NumberFormat('vi-VN', 'currency').format(product.price_of_one) + 'đ'}</p>
+                                                        {/* <span>Giảm {product.discount_percentage}%</span>
+                                                        <p>{Intl.NumberFormat('vi-VN', 'currency').format(product.price)+'đ'}</p> */}
                                                     </div> 
                                                     <div className={cn('item-number')}>
-                                                        <p>x{product.number}</p>
+                                                        <p>x{product.number_product_buy}</p>
                                                     </div>
                                                     <div className={cn('item-price-pay')}>
-                                                        <p>{Intl.NumberFormat('vi-VN', 'currency').format((product.productInf.price - ((product.productInf.price/100)*product.productInf.discount_percentage)) * product.number) + 'đ'}</p>
+                                                        <p>{Intl.NumberFormat('vi-VN', 'currency').format(product.price_of_one) + 'đ'}</p>
+                                                        {/* <p>{Intl.NumberFormat('vi-VN', 'currency').format((product.price - ((product.price/100)*product.discount_percentage)) * product.number) + 'đ'}</p> */}
                                                     </div> 
                                                 </div>
                                             )
                                         })
                                     }
                                 </div>
-                                <div className={cn('order-item_footer')}>
-                                    <div className={cn('order-item_footer__left')}>
-                                        <p>{order.address.consignee_name} - {order.address.consignee_phone}</p>
-                                        <p>{order.address.desc +', '+ order.address.commune +', '+ order.address.district +', '+ order.address.province}</p>
+                                <div className={cn('order_footer')}>
+                                    <div className={cn('left')}> 
+                                        <p>{order.ship.consignee_name} - {order.ship.consignee_phone}</p>
+                                        <p>{order.ship.desc_address +', '+ order.ship.ward_name +', '+ order.ship.district_name +', '+ order.ship.province_name}</p>
                                     </div>
-                                    <div className={cn('order-item_footer__right')}>
-                                        <p>Tổng thanh toán: </p>
-                                        <p>{Intl.NumberFormat('vi-VN', 'currency').format(order.total_payment_price)}đ</p>
+                                    <div className={cn('right')}>
+                                        <div className={cn('price-area')}>
+                                            <p className={cn('property')}>Tổng thanh toán: </p>
+                                            <p className={cn('price')}>{Intl.NumberFormat('vi-VN', 'currency').format(order.total_payment_price)}đ</p>
+                                        </div>
+                                        {/* <div className={cn('button-area')}>
+                                            <button type='button' className={cn('btn-cancel')}>Huỷ</button>
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>
-                        )
+                        );
                     })
                 }
             </div>
-        )
-        ||
-        <div style={{marginTop: '280px'}}>
-            <Loading></Loading>
         </div>
     )
-}
-
-export default Order
-
-
-// [
-//     {
-//       voucher: {
-//         code_temp: '',
-//         code: '',
-//         is_valid: false,
-//         is_loading: false,
-//         discount_ship_percentage: null,
-//         discount_one_product_percentage: null,
-//         discount_all_product_percentage: null,
-//         discount_total_payment_percentage: null,
-//         total_discount_price: null
-//       },
-//       coin: { value: 45000, isUsing: true },
-//       payment_method: {
-//         wallet_nowbuys: false,
-//         credit_card: false,
-//         payment_on_delivery: true
-//       },
-//       _id: new ObjectId("645bb87fb6f0d93196890e65"),
-//       id_user: 'nowbuys_user_35',
-//       product_list: [ [Object], [Object] ],
-//       address: { _id: new ObjectId("645bb87fb6f0d93196890e68") },
-//       total_products: 2,
-//       ship_price: 230000,
-//       total_price: 63934200,
-//       total_payment_price: 64119200,
-//       created_at: 2023-05-10T15:29:52.770Z,
-//       updated_at: 2023-05-10T15:29:52.770Z,
-//       __v: 0
-//     }
-// ]
+};

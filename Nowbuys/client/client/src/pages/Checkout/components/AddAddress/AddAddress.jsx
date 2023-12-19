@@ -224,7 +224,7 @@ export default function AddAddress({props}) {
         })
             .then(API => {
                 if (!API.data.error) {
-                    props.setIsShowPopupAddAddress(false)
+                    props.setIsShowPopupAddAddress(false);
                 } else {
                     // off loading in popup
                 }

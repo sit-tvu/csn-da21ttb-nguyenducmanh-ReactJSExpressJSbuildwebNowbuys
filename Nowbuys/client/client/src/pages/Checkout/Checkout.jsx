@@ -11,6 +11,7 @@ import {Loading, CircleLoading} from '../../Components/index.js'
 
 import classNames from 'classnames/bind'
 import style from './Checkout.module.scss'
+import { CheckoutAPI, OrderAPI } from '../../apis/index.js';
 const cn = classNames.bind(style) 
 
 function Checkout() { 
@@ -29,10 +30,8 @@ function Checkout() {
             for_price_ship_minimum: 0
         }
     }
-
     
     const url_params = new URLSearchParams(window.location.search) 
-    
     
     const [checkoutData, setCheckoutData] = useState({})
     
@@ -46,16 +45,18 @@ function Checkout() {
 
     const [isCheckingouting, setIsCheckingouting] = useState(false)
     const [showAddressPopup, setShowAddressPopup] = useState(false)
-    
+
     useEffect(() => {
         try {
-            let payload_checkout_decypt = JSON.parse(CryptoJS.AES.decrypt(decodeURIComponent(url_params.get('state')), process.env.REACT_APP_CRYPT_PAYLOAD_CHECKOUT).toString(CryptoJS.enc.Utf8))
+            let payload_checkout_decypt = JSON.parse(CryptoJS.AES.decrypt(decodeURIComponent(url_params.get('state')), process.env.REACT_APP_CRYPT_PAYLOAD_CHECKOUT).toString(CryptoJS.enc.Utf8));
             setPayloadCheckoutDecypt(payload_checkout_decypt)
             setVoucherInput(payload_checkout_decypt.voucher_code)
         } catch (error) {
             setPayloadCheckoutDecypt(null)
         }
     }, [])
+
+    console.log(checkoutData);
     
     useEffect(() => {
         if (payloadCheckoutDecypt !== null && showAddressPopup === false)
@@ -71,6 +72,7 @@ function Checkout() {
             is_using_nowbuys_coin: usingNowbuysCoin
         })
             .then(API => {
+                console.log(API);
                 if (API.data.data.ship && API.data.data.ship.to_address_id === -1) setShowAddressPopup(true)
                 setIsCheckingouting(false)
                 setCheckoutData(API.data.data)
@@ -81,6 +83,44 @@ function Checkout() {
                 setCheckoutData(null)
             }) 
     }; 
+
+    const handleCheckBeforeOrder = async () => {
+        setIsCheckingouting(true);
+        let res = await CheckoutAPI.refreshCheckout(payloadCheckoutDecypt.product_id_list, voucherInput, idOfAddressSelected, usingNowbuysCoin);
+        console.log(res);
+        if (!res.data.error) {
+            handleOrder(res.data.data);
+        } else {
+            if (res.data.not_sign_in) {
+                localStorage.setItem('to_signin_from_order_page', true);
+                window.location.href = '/signin';
+            } else {
+                setCheckoutData(null);
+            }
+        }
+    }
+
+    const handleOrder = async (data) => {
+        let product_list = data.order_product.map(product => {
+            return {product_id: product.id, number: product.number, price_of_one: product.price_after_discount}
+        });
+
+        let res = await OrderAPI.order(product_list, data.ship, (data.voucher.state == 'valid')?data.voucher.id:null, usingNowbuysCoin, data.order_price);
+        
+        if (!res.data.error) {
+            setIsCheckingouting(false);
+            window.location.href = '/order';
+        } else {
+            if (res.data.not_sign_in) {
+                localStorage.setItem('to_signin_from_order_page', true);
+                window.location.href = '/signin';
+            } else {
+                setCheckoutData(null);
+            }
+        }
+    }
+
+    console.log(checkoutData);
 
 
     return (
@@ -201,26 +241,27 @@ function Checkout() {
                                 ></input>
                                 <button className={cn('submit-voucher-button', {'active': true})}
                                     onClick={() => {
-                                        if (checkoutData && voucherInput !== checkoutData.voucher.code)
-                                            refreshCheckoutData()
+                                        console.log(checkoutData.voucher)
+                                        if (checkoutData && (!checkoutData.voucher || voucherInput !== checkoutData.voucher.code))
+                                            refreshCheckoutData();
                                     }}
                                 >ÁP DỤNG</button>
                             </div> 
                         </div>
                         {
-                            (checkoutData && Object.keys(checkoutData).length > 0)
+                            (checkoutData && Object.keys(checkoutData).length > 0 && checkoutData.voucher && checkoutData.voucher.code != '')
                             &&
                             <div className={cn('checkout_voucher__container')}>
-                                { 
-                                    (checkoutData.voucher.code === '' && checkoutData.voucher.is_valid === null)
-                                    && 
-                                    <p>Săn mã giảm giá ngay để được giảm đến 60%, hoặc tích luỹ xu sau mỗi đơn hàng giao thành công!</p>
+                                {  
+                                    (checkoutData.voucher.code != '' && checkoutData.voucher.state == 'invalid')
+                                    &&
+                                    <p>Mã giảm giá không tồn tại! Vui lòng nhập mã khác</p>
                                     ||
                                     (
-                                        checkoutData.voucher.discount_for_product.percent !== 0
+                                        checkoutData.voucher.for_discount == 'product'
                                         &&
                                         <Fragment>
-                                            <p style={{color: '#ee4d2d', fontStyle: 'italic', fontSize: '15px'}}>Mã giảm {checkoutData.voucher.discount_for_product.percent}% giá trị đơn hàng, tối đa {Intl.NumberFormat('vi-VN', 'currency').format(checkoutData.voucher.discount_for_product.maximum_price)}đ cho đơn hàng có giá trị tối thiểu {Intl.NumberFormat('vi-VN', 'currency').format(checkoutData.voucher.discount_for_product.for_price_total_product_minimum)}đ</p>
+                                            <p style={{color: '#ee4d2d', fontStyle: 'italic', fontSize: '15px'}}>Mã giảm {checkoutData.voucher.percent}% giá trị đơn hàng, tối đa {Intl.NumberFormat('vi-VN', 'currency').format(checkoutData.voucher.price_voucher_max)}đ cho đơn hàng có giá trị tối thiểu {Intl.NumberFormat('vi-VN', 'currency').format(checkoutData.voucher.order_price_min)}đ</p>
                                             {
                                                 checkoutData.order_price.discount_product_price === 0
                                                 &&
@@ -230,10 +271,10 @@ function Checkout() {
                                             }
                                         </Fragment>
                                         ||
-                                        checkoutData.voucher.discount_for_ship.percent !== 0
+                                        checkoutData.voucher.for_discount == 'ship'
                                         &&
                                         <Fragment>
-                                            <p style={{color: '#ee4d2d', fontStyle: 'italic', fontSize: '15px'}}>Mã giảm {checkoutData.voucher.discount_for_ship.percent}% phí vận chuyển, tối đa {Intl.NumberFormat('vi-VN', 'currency').format(checkoutData.voucher.discount_for_ship.maximum_price)}đ cho đơn hàng có phí vận chuyển tối thiểu {Intl.NumberFormat('vi-VN', 'currency').format(checkoutData.voucher.discount_for_ship.for_price_ship_minimum)}đ</p>
+                                            <p style={{color: '#ee4d2d', fontStyle: 'italic', fontSize: '15px'}}>Mã giảm {checkoutData.voucher.percent}% phí vận chuyển, tối đa {Intl.NumberFormat('vi-VN', 'currency').format(checkoutData.voucher.price_voucher_max)}đ cho đơn hàng có phí vận chuyển tối thiểu {Intl.NumberFormat('vi-VN', 'currency').format(checkoutData.voucher.order_price_min)}đ</p>
                                             {
                                                 checkoutData.order_price.discount_ship_price === 0
                                                 &&
@@ -242,10 +283,6 @@ function Checkout() {
                                                 <p style={{color: '#ccc', fontStyle: 'italic', fontSize: '15px'}}>Bạn được giảm {Intl.NumberFormat('vi-VN', 'currency').format(checkoutData.order_price.discount_ship_price)}đ tổng giá trị sản phẩm</p>
                                             }
                                         </Fragment>
-                                        ||
-                                        (voucherInput !== '' && checkoutData.voucher.is_valid === false)
-                                        &&
-                                        <p>Mã giảm giá không tồn tại! Vui lòng nhập mã khác</p>
                                     )
                                 }
                             </div>
@@ -313,7 +350,7 @@ function Checkout() {
                                 <div className={cn('method-item', {'active': false})}
                                     onClick={() => {}}
                                 >
-                                    <p>Thẻ tín dụng</p>
+                                    <p>Chuyển khoản ngân hàng</p>
                                 </div>
                                 <div className={cn('method-item', {'active': true})}
                                     onClick={() => {}}
@@ -351,6 +388,10 @@ function Checkout() {
                                     <p>Tổng thanh toán:</p>
                                     <h2 style={{color: '#ee4d2d', fontSize: '25px', fontWeight: 500}}>{Intl.NumberFormat('vi-VN', 'currency').format(checkoutData.order_price.total_payment_price)}đ</h2>
                                 </div>
+                                {/* <div className={cn('properti-item')}>
+                                    <p>Vui lòng thanh toán trước:</p>
+                                    <h2 style={{color: '#ee4d2d', fontSize: '25px', fontWeight: 500}}>{Intl.NumberFormat('vi-VN', 'currency').format(checkoutData.order_price.deposit_price)}đ</h2>
+                                </div> */}
                             </div>
                             ||
                             <div className={cn('checkout_payment-total')}>
@@ -391,7 +432,7 @@ function Checkout() {
                                 onClick={() => {}}
                             >
                                 {
-                                    <p>Đặt hàng</p>
+                                    <p onClick={() => handleCheckBeforeOrder()}>Đặt hàng</p>
                                     ||
                                     <div className={cn('circle-loading')}>
                                         <CircleLoading></CircleLoading>
