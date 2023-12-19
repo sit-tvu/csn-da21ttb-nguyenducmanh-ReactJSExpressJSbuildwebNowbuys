@@ -11,6 +11,7 @@ import addressRouter from './address/address.router.js'
 import checkoutRouter from './checkout/checkout.router.js'
 import verificationRouter from './verification/verification.router.js'
 import uploadRouter from './upload/upload.router.js'
+import orderRouter from './order/order.router.js';
 
 function router(app) {
     app.use('/api/auth', authRouter);
@@ -24,6 +25,8 @@ function router(app) {
     app.use('/api/address', addressRouter);
 
     app.use('/api/checkout', checkoutRouter);
+
+    app.use('/api/order', orderRouter);
 
     app.use('/api/verification', verificationRouter);
 

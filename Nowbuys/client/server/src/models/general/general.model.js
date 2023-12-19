@@ -19,10 +19,10 @@ export default new class CommentModel {
             let sql = `SELECT * FROM catelogy`;
 
             connectDatabaseNowbuys.query(sql, (err, results) => { 
-                setTimeout(() => {
+                // setTimeout(() => {
                     if (err) reject(err)
                     resolve(results?results:[])
-                }, 2000)
+                // }, 2000)
             })
         })
     } 

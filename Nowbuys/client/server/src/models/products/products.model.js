@@ -133,10 +133,10 @@ export default new class ProductModel {
             } 
 
             connectDatabaseNowbuys.query(sql, (err, results) => {
-                // setTimeout(() => {
+                setTimeout(() => {
                     if (err) reject(err)
                     resolve(results?results:[])
-                // }, 3000)
+                }, 500)
             })
         })
     } 
@@ -163,5 +163,30 @@ export default new class ProductModel {
             })
         })
     } 
+
+    async getProductForCheckout(user_id, product_id_list) {
+        return await new Promise((resolve, reject) => {
+            let sql = `
+                SELECT 
+                    product.*,
+                    cart.number,
+                    UNIX_TIMESTAMP(cart.updated_at) AS index_update,
+                    (product.price - (product.price * product.discount_percentage / 100)) AS price_after_discount,
+                    ${(user_id)?'IF(cart.product_id IS NOT NULL, true, false)':'false'} AS is_in_cart,
+                    IF(cart.number IS NOT NULL, cart.number, 1) AS number
+                FROM product LEFT JOIN cart ON product.id = cart.product_id AND cart.user_id = ${(user_id)?user_id:0}
+                WHERE  
+                    product.id IN (${product_id_list})
+                ORDER BY index_update DESC; 
+            `; 
+
+            connectDatabaseNowbuys.query(sql, (err, results) => { 
+                // setTimeout(() => {
+                    if (err) reject(err);
+                    resolve(results?results:[]);
+                // }, 2000)
+            })
+        })
+    }
      
 }

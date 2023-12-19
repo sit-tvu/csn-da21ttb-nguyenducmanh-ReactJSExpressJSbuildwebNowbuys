@@ -5,56 +5,39 @@ export default new class VoucherModel {
 
     async checkVoucher(voucher_code) {
         return await new Promise((resolve, reject) => {
-            if (voucher_code.trim() === 'abc')
-                resolve({
-                    is_valid: true,
-                    code: voucher_code,
-                    expired: '2023-10-30 23:59:59',
-                    discount_for_product: {
-                        percent: 0,
-                        maximum_price: 0,
-                        for_price_total_product_minimum: 0
-                    },
-                    discount_for_ship: {
-                        percent: 60, 
-                        maximum_price: 80000,
-                        for_price_ship_minimum: 100000
-                    }
-                })
-            
-            if (voucher_code.trim() === '123')
-                resolve({
-                    is_valid: true,
-                    code: voucher_code,
-                    expired: '2023-10-30 23:59:59',
-                    discount_for_product: {
-                        percent: 5,
-                        maximum_price: 700000,
-                        for_price_total_product_minimum: 50000000
-                    },
-                    discount_for_ship: {
-                        percent: 0,
-                        maximum_price: 0,
-                        for_price_ship_minimum: 0
-                    }
-                })
-            
-                
-            resolve({
-                is_valid: false,
-                code: voucher_code,
-                discount_for_product: {
-                    percent: 0,
-                    maximum_price: 0,
-                    for_price_total_product_minimum: 0
-                },
-                discount_for_ship: {
-                    percent: 0,
-                    maximum_price: 0,
-                    for_price_ship_minimum: 0
-                }
-            })
+
+            let sql = `
+                SELECT 
+                    *, 
+                    UNIX_TIMESTAMP(start) AS start,
+                    UNIX_TIMESTAMP(expired) AS expired,
+                    CASE
+                        WHEN NOW() < expired THEN 'valid'
+                        ELSE 'invalid'
+                    END AS state
+                FROM voucher WHERE code = '${voucher_code}';
+            `;
+
+            connectDatabaseNowbuys.query(sql, (err, result) => {
+                if (err)
+                    resolve([]);
+                resolve(result);
+            }); 
         })
     }
-    
+
+    async checkVoucherById(voucher_id) {
+        return await new Promise((resolve, reject) => {
+
+            let sql = `
+                SELECT * FROM ship WHERE id = ${voucher_id};
+            `;
+
+            connectDatabaseNowbuys.query(sql, (err, result) => {
+                if (err)
+                    resolve([]);
+                resolve(result);
+            });
+        })
+    }
 }

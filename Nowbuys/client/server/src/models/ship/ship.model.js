@@ -16,6 +16,7 @@ export default new class ShipModel {
                 sql += ` AND address.id = ${to_address_id};`;
             else
                 sql += ` AND address.is_default = 1;`;
+ 
 
             connectDatabaseNowbuys.query(sql, (err, result) => { 
                 if (err) reject(err) 
@@ -38,6 +39,43 @@ export default new class ShipModel {
                             price: 0
                         })
                 // }, 3000)
+            })
+        })
+    }
+
+    async create(to_address_id, price) {
+        return await new Promise((resolve, reject) => {
+            let sql = `
+                INSERT INTO ship(name_from, to_address_id, price)
+                VALUES ('Nowbuys', ${to_address_id}, ${price});
+            `;
+
+            connectDatabaseNowbuys.query(sql, (err, result) => {
+                if (err)
+                    reject(err);
+
+                resolve(result.insertId);
+            })
+        })
+    }
+
+    async getById(ship_id) {
+        return await new Promise((resolve, reject) => {
+            let sql = `
+                SELECT 
+                    * 
+                FROM 
+                    ship, address 
+                WHERE ship.id = ${ship_id} AND ship.to_address_id = address.id;
+            `;
+
+            connectDatabaseNowbuys.query(sql, (err, result) => {
+                if (err)
+                    reject(err);
+
+                console.log(result);
+
+                resolve(result[0]);
             })
         })
     }

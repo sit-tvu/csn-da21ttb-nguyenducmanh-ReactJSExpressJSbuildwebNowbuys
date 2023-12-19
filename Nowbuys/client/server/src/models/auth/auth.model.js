@@ -77,8 +77,6 @@ export default new class AuthModel {
                 //     else 
                 //         profile[0].address = JSON.parse(profile[0].address)
 
-                console.log(profile);
-
                 // For mySQL version 8.0
                 if (profile && profile.length === 1 && profile[0].address[0].id === null) {
                     profile[0].address = [];
@@ -172,5 +170,22 @@ export default new class AuthModel {
             })  
         })
     }
+
+    async delCoin(user_id) {
+        return await new Promise((resolve, reject) => {
+
+            let sql = `
+                UPDATE user SET coin = 0 WHERE id = ${user_id};
+            `;
+
+            connectDatabaseNowbuys.query(sql, async (err, result) => { 
+                if (err) reject(err)  
+
+                resolve(true);
+            });
+        });
+    }
+
+
  
 }
